@@ -1,0 +1,35 @@
+@(user: securesocial.core.SocialUser)(implicit request: RequestHeader, messages: Messages)
+
+@scripts = {
+    <script src="@routes.Assets.at("js/common_header.js")"></script>
+    <script src="@routes.Assets.at("js/kyc_submission.js")"></script>
+}
+
+@exchange._chrome(user,Messages("chrome.exchange.navigation.dashboard.title"), "ThankYou", scripts) {
+
+  <div class="content-wrapper">
+    <div class="row">
+        <section class="col-lg-12 connectedSortable privacy_policy">
+            <div class="how_it_works">
+                <h6>THANK YOU</h6>
+                <img src="@routes.Assets.at("img/thankyou.png")" />
+              <!--   <div class="color_stip" style="background:#70b7d2;"></div> -->
+                <div class="page_content">
+                    <div class="col-lg-12">
+                        <div class="support_content">
+                            <p>Your application has been submitted successfully.
+                            We will notify you once your kyc is approved.<br> 
+                         Redirecting to profile page please do not refresh this page</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+      </div>
+
+  </div>
+  }
+  @content.session_footer()

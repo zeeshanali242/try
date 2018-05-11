@@ -1,0 +1,176 @@
+@(title: String, scripts: Html = Html(""), styles: Html = Html(""), loggedIn: Boolean = false,option:Option[securesocial.core.SocialUser])(content: Html)(implicit request: RequestHeader, messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import play.api.Play.current
+@import securesocial.core.SocialUser
+@import controllers.ProviderController
+
+@navItem(url: String, title:String) = {
+@if(request.path==url) {
+    <li class="active">
+      } else {
+      <li>
+      }
+      <a href="@url" title="@title">
+          <span class="sidebar-text">
+              @title
+          </span>
+      </a>
+    </li>
+}
+
+@extraScripts = {
+    <!-- <script src="@routes.Assets.at("js/vendor/jquery-2.1.1.js")"></script> -->
+    <script src="@routes.Assets.at("js/vendor/handlebars-v2.0.0.js")"></script>
+    <script src="@routes.Assets.at("js/vendor/jquery.pnotify.js")"></script>
+    <script src="@routes.Assets.at("js/vendor/jquery.qrcode-0.10.1.min.js")"></script>
+    <script src="@routes.Assets.at("js/vendor/moment.min.js")"></script>
+}
+
+@extraStyles = {
+}
+
+@_global_chrome(title, Html(scripts + extraScripts.body), Html(styles + extraStyles.body)) {
+
+    <header class="main-header" id="header">
+     @if(option.isDefined){
+    <a href="#/" class="mobileButton">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </a>
+    }
+      <a href="@routes.Application.index()" class="logo">
+          <img src="@routes.Assets.at("img/logo.png")" alt="Trynex"/>
+      </a>
+      <nav class="navbar navbar-static-top">
+        <div class="currencybutton">
+        </div>
+        @if(option.isDefined){
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <div class="userinfo">
+                      <div class="user_avtar ">
+                            <!-- <img class="Avatar" src="@routes.Assets.at("img/avtar.jpg")" alt="Avtar" title="Avtar" />
+                            <div class="online"><i class="fa fa-circle"></i></div> -->
+                      </div>
+                      <div class="username_designation">
+                        <h5>@option.get.first_name</h5>
+                        <i class="fa fa-angle-down"></i>
+                      </div>
+                    </div>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="@routes.Application.viewProfile().url">view profile</a></li>
+                  <li><a href="@controllers.routes.LoginPage.logout().absoluteURL(true)">logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        }
+        <div class="currencydata">
+        </div>
+        <script id="pair-picker-template" type="text/x-handlebars-template">
+          <a href="#/" id="currencyId" exchange-base="BTC" exchange-counter="INR"><img src="@routes.Assets.at("img/zee_currency_icon.png")" /><span id="t1">BTC/INR</span>  <img class="drop_arrow" src="@routes.Assets.at("img/drop_arrow.png")" /></a>
+          <div class="currencydrop">
+              {{#each this}}
+                <div {{#if @@index}}{{else}}  {{/if}} class="currecny_table_dropdown" exchange-base="{{base}}" exchange-counter="{{counter}}" last="{{last}}" percentage="{{percentage}}" volume="{{sum}}" color="{{color}}">
+                  <!-- <h5>{{heading}}</h5> -->
+                  <div class="table_format">
+                    <table cellpadding="0" cellspacing="" border="0">
+                      <tbody>
+                        <tr>
+                          <td>{{base}}/{{counter}}</td>
+                          <td>{{last}}</td>
+                          <td style="color:{{color}}">{{percentage}}% <i class="fa fa-caret-{{fafa}}" aria-hidden="true"></i></td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              {{/each}}
+          </div>
+        </script>
+
+        <script id="currency-data-template" type="text/x-handlebars-template">
+          <ul>
+            <li><div id="last"></div><span>Last Trade Price</span></li>
+            <li ><div class="percentage_price">  <i class="fa fa-caret-up" aria-hidden="true"></i></div><span>24 hour Price</span></li>
+            <li><div id="volume"></div><span>24 hour Volume</span></li>
+          </ul>
+        </script>
+      </nav>
+    </header>
+    @if(!(request.path=="/homepage")){
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+            <!-- Sidebar user panel -->
+            @if(option.isDefined){
+              <!-- sidebar menu: : style can be found in sidebar.less -->
+              <ul class="sidebar-menu" data-widget="tree">
+                <div class="hide_show" id="hideShowId">
+                  <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                      <img src="@routes.Assets.at("img/hide_show.png")"></img>
+                  </a>
+                </div>
+                <li id="exchange">
+                  <a href="@routes.Application.exchange().url">
+                    <img src="@routes.Assets.at("img/home.png")"></img><div>Exchange</div>
+                  </a>
+                </li>
+                <!-- @routes.Application.dashboard().url -->
+                <li class="" id="dashboard">
+                  <a href="@routes.Application.dashboard().url">
+                    <img src="@routes.Assets.at("img/wallet-smal.png")"></img><div>TRADE ACCOUNT</div>
+                  </a>
+                </li>
+                <li class="" id="history">
+                  <a href="@routes.Application.history().url">
+                    <img src="@routes.Assets.at("img/account.png")"></img><div>Account History</div>
+                  </a>
+                </li>
+              </ul>
+            }
+          </section>
+        <!-- /.sidebar -->
+      </aside>
+     
+    }
+     @if(option.isDefined){
+ <div class="mobile_menu">
+  <div class="mobile_inner_menu">
+        <div class="navigationlist">
+          <ul>
+              <li>
+                  <a href="#/">
+                    <label><img src="@routes.Assets.at("img/home.png")" /></label>
+                      <span>exchange</span>
+                    </a>
+                </li>
+                <li>
+                  <a href="#/">
+                    <label><img src="@routes.Assets.at("img/wallet-smal.png")" /></label>
+                      <span>wallet</span>
+                    </a>
+                </li>
+                <li>
+                  <a href="#/">
+                    <label><img src="@routes.Assets.at("img/exchange.png")" /></label>
+                      <span>account history</span>
+                    </a>
+                </li>
+                <li class="close_menu">
+                  <a href="#/">
+                    <label><img src="@routes.Assets.at("img/hide_show.png")" /></label>
+                      <span>logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div><!--Mobile Menu Listing-->
+}
+    @content
+
+
+}

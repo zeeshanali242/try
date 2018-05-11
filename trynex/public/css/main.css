@@ -1,0 +1,435 @@
+body {
+    position: relative;
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+    margin-top: 70px;
+}
+.checkbox label .toggle,.checkbox-inline .toggle{margin-left:-20px;margin-right:5px}
+.toggle{position:relative;overflow:hidden}
+.toggle input[type=checkbox]{display:none}
+.toggle-group{position:absolute;width:200%;top:0;bottom:0;left:0;transition:left .35s;-webkit-transition:left .35s;-moz-user-select:none;-webkit-user-select:none}
+.toggle.off .toggle-group{left:-100%}
+.toggle-on{position:absolute;top:0;bottom:0;left:0;right:50%;margin:0;border:0;border-radius:0}
+.toggle-off{position:absolute;top:0;bottom:0;left:50%;right:0;margin:0;border:0;border-radius:0}
+.toggle-handle{position:relative;margin:0 auto;padding-top:0;padding-bottom:0;height:100%;width:0;border-width:0 1px}
+.toggle.btn{min-width:59px;min-height:34px}
+.toggle-on.btn{padding-right:24px}
+.toggle-off.btn{padding-left:24px}
+.toggle.btn-lg{min-width:79px;min-height:45px}
+.toggle-on.btn-lg{padding-right:31px}
+.toggle-off.btn-lg{padding-left:31px}
+.toggle-handle.btn-lg{width:40px}
+.toggle.btn-sm{min-width:50px;min-height:30px}
+.toggle-on.btn-sm{padding-right:20px}
+.toggle-off.btn-sm{padding-left:20px}
+.toggle.btn-xs{min-width:35px;min-height:22px}
+.toggle-on.btn-xs{padding-right:12px}
+.toggle-off.btn-xs{padding-left:12px}
+
+
+
+.navbar-exchange {
+    background-color: #0a6970;
+    border-color: #ffffff;
+}
+.navbar-exchange .nav .active {
+    background-color: #FFFFFF;
+}
+.navbar-exchange .nav .active a {
+    color: #000000;
+}
+.navbar-exchange a {
+    color: #FFFFFF;
+}
+.navbar-exchange .nav .active a:hover,
+.navbar-exchange .nav .active a:active,
+.navbar-exchange .nav .active a:focus {
+    background-color: #eeeeee;
+}
+.navbar-exchange .nav a:hover,
+.navbar-exchange .nav a:active,
+.navbar-exchange .nav a:focus {
+    background-color: #064c52;
+}
+.navbar-exchange .navbar-toggle {
+    background-color: #000000;
+}
+.navbar-exchange .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+.content > .content-body {
+    padding: 10px 20px;
+    min-height: 570px;
+}
+.content.contentpage {
+    margin-left: 0;
+}
+.panel-ext {
+    margin-right: 20px;
+}
+.panel-ext .btn-group.language {
+    margin-top: 0;
+    margin-right: 10px;
+}
+.ticker-row {
+    position: relative;
+}
+.ticker-controls {
+    position: absolute;
+    right: 7px;
+    top: 4px;
+}
+.money {
+    
+}
+.json-ref {
+    font-size: 0.7em;
+    text-align: right;
+}
+.clickable {
+    cursor: pointer;
+}
+.limit-width {
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.dl-small>dt {
+    width: 50px;
+}
+.dl-small>dd {
+    margin-left: 60px;
+}
+.big-ticker-pair {
+    text-align: right;
+    font-weight: bold;
+}
+.money-heading {
+
+}
+ .qr-code {
+    width: 200px
+}
+.subtitle {
+    color: #0a6970;
+}
+.intro-image {
+    background-color: White;
+    text-align: center;
+    margin-top: -20px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 280px;
+    z-index: 2;
+}
+.sign-up-text {
+    margin-right: 10px;
+    font-size: 2em;
+}
+#signup-wrap {
+    padding: 1em;
+    background-color: #e5f0e6;
+}
+#login-wrap {
+    padding: 1em;
+    background-color: #eeeeee;
+}
+.content {
+    background-color: #ffffff;
+    position: relative;
+    z-index: 3;
+    top: 200px;
+    overflow: hidden;
+}
+.detailed-points p {
+    font-size: 1.5em;
+}
+.beta {
+    color: #cccccc;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.container-fluid {
+    min-height: 82vh;
+}
+
+.footerwrap {
+    background-color: #0a6970;
+    padding-top: 20px;
+    height: 100%;
+    position: inherit;
+    width: 100%;
+}
+.footerwrap a {
+    color: #a1d6e8;
+    text-decoration: none;
+}
+.footerwrap a:hover {
+    color: white;
+}
+.copyright {
+    color: #a1d6e8;
+}
+#beta-wrap {
+    background-color: #ffffff;
+    margin-bottom: 21px;
+}
+#ticker-wrap {
+    padding-top: 20px;
+}
+.linkable {
+    margin-top: -60px;
+    padding-top: 60px;
+}
+#pair-picker {
+    margin-bottom: 10px;
+}
+#bid,
+#ask {
+    margin-bottom: 20px;
+}
+.tablescroller {
+    max-height: 300px;
+    overflow: auto;
+}
+.tablescroller>table {
+    margin-bottom: 0;
+}
+.spinner {
+    text-align: center;
+    height: 1em;
+}
+.spin {
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+.bgColor {
+    background-color: #e5f0e6;
+}
+.loginHeading {
+    font-family: sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 38px;
+    margin: 22px 0 24px 0;
+}
+.btn-xl {
+    padding: 3px 27px;
+    font-size: 17px;
+    border-radius: 6px;
+}
+.featureBanner {
+    font-size: 36px;
+    font-weight: 300;
+    color: #5c7882;
+    margin: 16px 0 40px;
+}
+.signInHome {
+    margin-top: 8px;
+}
+.highlight {
+    font-size: 24px;
+    font-weight: 300;
+}
+.home3col {
+    font-size: 17px;
+}
+.navLogo {
+    margin-top: -12px;
+}
+a.btn.btn-primary,
+.btn-primary {
+    background-color: #0a6970;
+    color: white;
+    border: none;
+    background-image: none;
+    border-radius: 0px;
+}
+a.btn.btn-primary:hover,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+    background-color: #064c52;
+    color: white;
+}
+.language-dropdown {
+    background-color: #0a6970;
+}
+.dropdown-menu {
+    padding: 0px 0
+}
+.dropdown-menu > li > a {
+    border-top: 1px solid black;
+    color: white;
+}
+.dropdown-menu > li > a:hover {
+    background-color: blue!important;
+    color: red;
+}
+.dropdown-menu > li > a.active {
+    background-color: blue;
+    color: blue;
+    cursor: default;
+}
+.market {
+    font-size: 12px;
+    padding-left: 6px;
+    width: 62px;
+}
+.marketDiv {
+    font-size: 22px;
+    line-height: 40px;
+    position: relative;
+    background-color: #b3d5d6;
+    border-bottom: 1px solid #0a6970;
+    padding-left: 15px;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    background-color: #064c52;
+}
+.r {
+    border: 1px solid #b3d5d6!important
+}
+.pair {
+    margin: 4px 4px 0px;
+}
+.tradePairDiv {
+    border-top: 2px solid #064c52!important;
+    min-height: 291px;
+}
+.buy-head {
+    background-color: #f3f7f7;
+    height: 80px;
+    position: relative;
+    border-bottom: 2px solid #52a058;
+}
+
+@media ( min-width: 768px) {
+    .grid-divider {
+        position: relative;
+        padding: 0;
+    }
+    .grid-divider>[class*='col-'] {
+        position: static;
+    }
+    .grid-divider>[class*='col-']:nth-child(n+2):before {
+        content: "";
+        border-left: 1px solid #DDD;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+    .col-padding {
+        padding: 0 15px;
+    }
+}
+.table thead th {
+    background-color: #B3D5D5;
+}
+
+.account_history_th{background-color: #f8a338 !important;text-transform: uppercase; font-size:16px;font-weight:bold;color: #fff;}
+.account_histor_table_td{ background:#e0ffdd !important;}
+
+.table td,
+.table th {
+    border: none;
+}
+table.table {
+    border: 1px solid #91abac;
+}
+.marketDiv {
+    font-size: 22px;
+    line-height: 40px;
+    position: relative;
+    background-color: #b3d5d6;
+    border-bottom: 1px solid #0a6970;
+    padding-left: 15px;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    background-color: #064c52;
+}
+.r {
+    border: 1px solid #b3d5d6!important
+}
+.pair {
+    margin: 4px 4px 0px;
+}
+.tradePairDiv {
+    border-top: 2px solid #064c52!important;
+    min-height: 291px;
+}
+.buy-head {
+    background-color: #f3f7f7;
+    height: 42px;
+    position: relative;
+    border-bottom: 2px solid #52a058;
+}
+.buy-head h4 {
+    margin-top: 0px;
+    padding: 8px;
+}
+.orders-div {
+    width: 100%;
+    margin: 15px 0 10px 0;
+    float: left;
+    border: 1px solid #91abac;
+}
+#bid-submit,
+#ask-submit {
+    width: 121px;
+    margin-left: 21px;
+}
+.form-horizontal .control-label {
+    text-align: left;
+}
+.form-horizontal {
+    margin: 6px;
+}
+.msg {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid rgb(198, 213, 220);
+    background: rgb(249, 251, 251);
+}
+.msg .by {
+    float: left;
+    clear: left;
+    font-size: 9px;
+    color: rgb(66, 86, 92);
+    padding: 0px 10px 10px
+}
+.msg .info {
+    float: left;
+    padding: 10px 10px 5px;
+}
+.form-input{
+    height: 22px;
+}
+
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

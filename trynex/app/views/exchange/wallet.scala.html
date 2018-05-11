@@ -1,0 +1,284 @@
+@(user: securesocial.core.SocialUser)(implicit request: RequestHeader, messages: Messages)
+
+@scripts = {
+ <script src="@routes.Assets.at("js/signup.js")"></script>
+}
+
+@exchange._chrome(user,Messages("chrome.exchange.navigation.history.title"), "list", scripts) {
+  <div class="content-wrapper">
+      <div class="row">
+          <section class="col-lg-12 connectedSortable trading_rules wallets">
+            	<div class="how_it_works">
+              	<h6>TRYNEX WALLETS</h6>
+                  <div class="color_stip" style="background:#3475df;">PORTFOLIO VALUE : INR <span>13,28,279.71</span></div>
+
+                  <div class="cryptocurrency">
+                          	<table class="crypto_currency" cellpadding="0" cellspacing="0" border="0">
+                              	<thead>
+                                  	<tr>
+                                      	<th colspan="2">CRYPTOCURRENCY</th>
+                                          <th>total</th>
+                                          <th>in orders</th>
+                                          <th>available</th>
+                                          <th colspan="3">transact</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  	<tr>
+                                      	<td><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46" height="46" viewBox="0 0 46 46">
+    <defs>
+        <path id="a" d="M16.424.534C5.629 2.533-1.502 12.903.497 23.698c1.744 9.42 9.865 16.05 19.08 16.256l.191.004a19.946 19.946 0 0 0 3.892-.334c9.43-1.746 16.063-9.88 16.258-19.104l.002-.144c.018-1.29-.09-2.6-.333-3.915C37.839 7.019 29.687.38 20.447.202L20.38.201l-.315-.003c-1.2 0-2.418.11-3.641.336z"/>
+        <path id="c" d="M16.461 0c-.966 0-1.948.087-2.932.267C4.824 1.855-.924 10.107.689 18.695c1.613 8.59 9.978 14.265 18.683 12.678 8.705-1.588 14.454-9.84 12.84-18.429C30.782 5.327 24.041.001 16.462.001z"/>
+        <path id="d" d="M5.382 4.353L5.41.393l2.495.068-.059 3.826 1.749.034.014-3.91 2.43.084.007 3.81s2.45.175 3.735 1.057c1.285.884 4.006 4.377.029 6.974.528.144.987.341 1.38.583 3.187 1.952 2.147 6.735-.87 8.37-1.882 1.018-2.85.74-4.288.933l-.163 3.993-2.477-.097.081-3.83-1.736-.084-.089 3.903-2.513-.041.009-3.837-4.824-.034.58-3.047 1.9.07a.847.847 0 0 0 .853-.834L3.637 7.856a.886.886 0 0 0-.856-.904L.55 6.87l.17-2.66 4.661.144zM7.867 7.19l-.058 4.66s3.19.002 4.357-.562c1.391-.67 1.412-2.387.326-3.41-1.11-1.045-4.625-.688-4.625-.688zM7.722 19.27s.546.025 1.299.025c1.274 0 3.14-.072 3.944-.459 1.522-.735 1.751-2.792.471-3.807-1.286-1.02-5.649-.859-5.649-.859l-.065 5.1z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(3 3.297)">
+            <mask id="b" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <path fill="#203663" d="M-1.589-2.32l44.03.768-.768 44.03-44.03-.768z" mask="url(#b)"/>
+        </g>
+        <use fill="#FFF" transform="translate(6.596 7.342)" xlink:href="#c"/>
+        <g transform="translate(14.236 10.038)">
+            <mask id="e" fill="#fff">
+                <use xlink:href="#d"/>
+            </mask>
+            <use fill="#F90" xlink:href="#d"/>
+            <path fill="#F90" d="M-2.646-1.464l23.268-.813 1130621.058 30.289-23.268.813z" mask="url(#e)"/>
+        </g>
+    </g>
+</svg>
+</td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon2.png")"/></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon3.png")" /></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon4.png")" /></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon5.png")"/></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon1.png")" /></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon2.png")" /></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon3.png")" /></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon4.png")"/></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                      <tr>
+                                      	<td><img src="@routes.Assets.at("img/icon5.png")"/></td>
+                                          <td>bitcoing(BTC)</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><i class="fa fa-gbp" aria-hidden="true"></i>47155</td>
+                                          <td><button>Action</button></td>
+                                          <td><button>Withdraw</button></td>
+                                          <td><button>Trade</button></td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+              </div><br><br>
+              <div class="how_it_works">
+              	<h6>INR Wallets</h6>
+                  <div class="payment_accordian">
+                    <div class="panel-group" id="accordion">
+                      <div class="panel panel-default payment_overview">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">OVERVIEW</a>
+                          </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                          <div class="panel-body">
+                          	<h4>Total amount in wallet</h4>
+                              <div class="stip"></div>
+                              <div class="total_amount">
+                              	<div class="total_div">total</div>
+                                  <div class="total_div">inorder</div>
+                                  <div class="total_div">available</div>
+                              </div>
+                              <div class="stip" style="margin-bottom:0px;"></div>
+                              <div class="total_values">
+                              	<div class="total_div">103.91 INR</div>
+                                  <div class="total_div">0.00 INR</div>
+                                  <div class="total_div">0.00 INR</div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default banktransfer">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">DEPOSIT VIA BANK TRANSFERS</a>
+                          </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                          <div class="panel-body">
+                          	<h4>Bank Account Details</h4>
+                              <div class="stip"></div>
+                              <div class="detail_instrucion">
+                              	<div class="acc_detail">
+                                  	<table cellpadding="0" cellspacing="0" border="0" class="account_details">
+                                      	<tbody>
+                                          	<tr>
+                                              	<td>Account Number</td>
+                                                  <td>333802000000291</td>
+                                                  <td><a href="#/">Copy</a></td>
+                                              </tr>
+                                              <tr>
+                                              	<td>IFSC</td>
+                                                  <td>BANDHWDL</td>
+                                                  <td><a href="#/">Copy</a></td>
+                                              </tr>
+                                              <tr>
+                                              	<td>Account Holder Name</td>
+                                                  <td>Discidium Internet Labs Pvt Ltd</td>
+                                                  <td><a href="#/">Copy</a></td>
+                                              </tr>
+                                              <tr>
+                                              	<td>Remarks/Description</td>
+                                                  <td>9842153131</td>
+                                                  <td><a href="#/">Copy</a></td>
+                                              </tr>
+                                              <tr>
+                                              	<td>Transaction Fee 9UPI) : 0%</td>
+                                                  <td></td>
+                                                  <td></td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  <div class="instructions">
+                                  	<h6>UPI Deposit Instructions:</h6>
+                                      <ul>
+                                      	<li>The minimum deposit amount is ₹1,000.</li>
+                                          <li>The transfer must be made from your linked bank account only.</li>
+                                          <li>Enter your registered mobile number in the Remarks (BHIM)/ Description (Paytm)/ Message (PhonePe)/ What's this for? (Tez) section.</li>
+                                          <li>Once the transaction is successful, submit a deposit request by entering the exact amount and the 12 digit Transaction ID (BHIM)/ UPI </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <div class="stip"></div>
+                              <div class="payment_gateways">
+                              	<ul>
+                                  	<li>Payment Gateways : </li>
+                                      <li><a href="#/"><img src="@routes.Assets.at("img/bhim.jpg")" /></a></li>
+                                      <li><a href="#/"><img src="@routes.Assets.at("img/paytm.jpg")"/></a></li>
+                                      <li><a href="#/"><img src="@routes.Assets.at("img/phonepe.jpg")"/></a></li>
+                                      <li><a href="#/"><img src="@routes.Assets.at("img/tez.jpg")"/></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default payment_gateway">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">DEPOSIT VIA PAYMENT GATEWAY</a>
+                          </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                          <div class="panel-body">
+                          	<h4>Deposit via payment gateway 1</h4>
+                              <div class="stip"></div>
+                              <p>Major Listed Banks: Axis Bank, aaICICI Bank, SBI Bank, HDFC Bank, Induslnd Bank</p>
+                              <p>The Banks which are not listed in payment gateway have voluntarily withdrawn from cryptocurrency transactions</p>
+
+                              <p>Deposit fee: Flat 2%</p>
+
+                              <p>Note: Users will bear a flat payment gateway charge of 2% on the amount <!-- deposited.</p>
+                              <form action="" method="" class="pay_gateway">
+                              	<ul>
+                                  	<li><input type="text" name="amount" placeholder="Amount" /></li>
+                                      <li class="paybutton"><input type="submit" name="pay" value="pay" /></li>
+                                  </ul>
+                              </form> -->
+
+                              
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </section>
+
+
+        </div>
+
+    </div>
+}
+@content.footer()

@@ -1,0 +1,6 @@
+ @(otp: String)(implicit messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+
+Welcome to Trynex.
+Your OTP is @otp and it will valid for only 5 mins.
+

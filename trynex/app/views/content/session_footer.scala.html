@@ -1,0 +1,41 @@
+@()(implicit request: RequestHeader, messages: Messages)
+
+<div class="insidefooter">          
+                <div class="insidefootermenudiv">
+                    <div class="fullwidthinner">            
+                        <div class="foot-menu">
+                            <h4>trynex</h4>
+                            <ul>
+                               <li id="aboutus"><a href="@controllers.routes.Application.aboutus().absoluteURL()">About Us</a></li>
+                        <li ><a href="javascript:void(0)">Contact Us</a></li>
+                        <li id="privacy_policy"><a href="@controllers.routes.Application.privacyPolicy().absoluteURL()">Privacy Policy</a></li>
+                        <li id="security"><a href="@controllers.routes.Application.security().absoluteURL()">Security</a></li>
+                        <li id="disclaimer"><a href="@controllers.routes.Application.disclaimer().absoluteURL()">Disclaimer</a></li>
+                        <li id="terms"><a href="@controllers.routes.Application.terms().absoluteURL()">Terms of use</a></li>
+                        <li id="trynexFees"><a href="@controllers.routes.Application.trynexFees().absoluteURL()">Trynex fees</a></li>
+                        <li id="absolute_url"><a href="#/">How It Works</a></li>
+                    <li id="tradingRules"><a href="@controllers.routes.Application.tradingRules().absoluteURL()">Trading Rules</a></li>
+                            </ul>
+                        </div>
+                        <div class="social-menu">
+                            <h4>Follow Us</h4>
+                            <ul>
+                                <li><a href="#/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#/"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="insidecopyright">
+                    <div class="fullwidthinner">
+                        <p>Copyright © Trynex. All Right Reserved.</p>
+                        <div class="socialicons">
+                            <ul>
+                                <li><a href="#/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#/"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+          </div>

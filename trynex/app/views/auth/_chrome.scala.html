@@ -1,0 +1,14 @@
+@(title: String, scripts: Html = Html(""), styles: Html = Html(""), exchangeChrome:Boolean = false , loggedIn: Boolean = false)(contentHtml: Html)(implicit request: RequestHeader, messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+@body = {
+
+
+       @contentHtml
+
+}
+
+@if(exchangeChrome){
+    @exchange._chrome(null,title, "", scripts, styles)(body)
+} else {
+    @content._chrome_normal(title, scripts, styles)(body)
+}

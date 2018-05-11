@@ -1,0 +1,300 @@
+@(user: securesocial.core.SocialUser)(implicit request: RequestHeader, messages: Messages)
+
+@styles = {
+    
+}
+@scripts = {
+    <script src="@routes.Assets.at("js/pager.js")"></script>
+    <script src="@routes.Assets.at("js/history.js")"></script>
+     <script src="@routes.Assets.at("js/common_header.js")"></script>
+
+   
+     
+    }
+
+@exchange._chrome(user,Messages("chrome.exchange.navigation.history.title"), "list", styles=styles,scripts=scripts) {
+
+    <div class="">
+        <!-- <div class="box corner-all col-md-12"> -->
+            <div class="panel panel-default">
+                <div class="panel-heading histroy_page" style="">@Messages("history.tradehistory.title")</div>
+                <div id="trade-history">
+                </div>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div class="box corner-all col-md-12">
+         -->  <div class="panel panel-default" >
+                <div class="panel-heading histroy_page">@Messages("history.depositwithdrawhistory.title")
+                </div>
+                <div id="deposit-withdraw-history">
+                </div>
+            </div>
+       <!--  </div> -->
+    </div>
+
+    <div class="">
+       <!--  <div class="box corner-all col-md-12">
+         -->    <div class="panel panel-default">
+                <div class="panel-heading histroy_page">@Messages("history.login.title")</div>
+                <div id="login-history">
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+     <div class="">
+       <!--  <div class="box corner-all col-md-12">
+         -->    <div class="panel panel-default">
+
+                <div class="panel-heading histroy_page">@Messages("history.report")
+     <br>
+    <div>
+     <div class="trade_transaction">
+                  <div class="trade_pa">
+                      <h5 style="font-size:16px;">Trade</h5>
+                        <div class="trade_form" style="border-style: groove;">
+
+                          <form action="">
+                              <ul>
+                                  <li><input type="date" id="startDate" name="start_date" placeholder="Start Date" /></li>
+                                    <li><input type="date" id="endDate" name="start_date" placeholder="End Date" /></li>
+                                    <li>
+                                      <select type="text"  name="select_transaction_trade" class="select_transaction_trade" >
+                                            <option>Trade Type</option>
+                                            <option>Buy</option>
+                                            <option>Sell</option>
+                                            <option>Both</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                      <select type="text"  class="select_coin">
+                                          <option>Select Coin</option>
+                                            <option value="BTC">BTC</option>
+                                            <option value="LTC">LTC</option>
+                                            <option value="BTH">BTH</option>
+                                            <option value="DASH">DASH</option>
+                                            <option value="XRP">XRP</option>
+                                            <option value="ETH">ETH</option>
+                                            <option value="ZEC">ZEC</option>
+                                        </select>
+                                    </li>
+                                    <li class="mail_report">
+                                      <input type="button" name="mailreport" value="Mail Report" id="tradeReport"/>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    <div class="trade_pa wallet_trnsection">
+                      <h5 style="font-size:16px;">Wallet Transaction</h5>
+                        <div class="trade_form" style="border-style: groove;">
+
+                          <form action="" method="">
+                              <ul>
+                                  <li><input type="date" id="walletStartDate" name="start_date" placeholder="Start Date" /></li>
+                                    <li><input type="date" id=walletEndDate name="start_date" placeholder="End Date" /></li>
+                                    <li>
+                                      <select type="text"  name="select_transaction" class="select_transaction" >
+                                            <option>Transaction Type</option>
+                                            <option>Deposit</option>
+                                            <option>Withdraw</option>
+                                            <option>Both</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                      <select type="text"  name="select_coin" class="select_coin_wallet" >
+                                          <option>Select Coin</option>
+                                            <option value="BTC">BTC</option>
+                                            <option value="LTC">LTC</option>
+                                            <option value="BTH">BTH</option>
+                                            <option value="DASH">DASH</option>
+                                            <option value="XRP">XRP</option>
+                                            <option value="ETH">ETH</option>
+                                            <option value="ZEC">ZEC</option>
+                                        </select>
+                                    </li>
+                                    <li class="mail_report">
+                                      <input type="button" name="mailreport" value="Mail Report" id="walletReport"/>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                </div>
+                <!-- <div id="report-panel">
+                </div> -->
+
+
+
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <!-- <script id="login-history-template" type="text/x-handlebars-template"> -->
+        <!-- <div class="tablescroller">
+        <table id="login_history_table" class="table table-striped responsive">
+            <thead>
+                <tr>
+                    <th class="account_history_th">@Messages("terminology.time")</th>
+                    <th class="account_history_th">@Messages("terminology.log_type")</th>
+                    <th class="account_history_th">@Messages("terminology.ip")</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this}}
+                    {{> login-history-row}}
+
+
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="spinner" style="display:none"><i class="spin glyphicon glyphicon-refresh"></i></div>
+        </div> -->
+   <!--  </script> -->
+
+    <script id="login-history-row-template" type="text/x-handlebars-template">
+         
+         <table id="login_history_table" class="table table-striped responsive">
+            <thead>
+                <tr>
+                    <th class="account_history_th">@Messages("terminology.time")</th>
+                    <th class="account_history_th">@Messages("terminology.log_type")</th>
+                    <th class="account_history_th">@Messages("terminology.ip")</th>
+                </tr>
+            </thead>
+         {{#each this}}
+        <tr>
+            <td>{{created}}</td>
+            <td>{{typ}}</td>
+            <td>{{ip}}</td>
+        </tr>
+        {{/each}}
+        </table>
+    
+    </script>
+
+    <!-- <script id="trade-history-template" type="text/x-handlebars-template">
+        <div class="tablescroller">
+        <table class="table table-striped responsive">
+            <thead>
+                <tr>
+                    <th class="account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.time")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.market")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.type")</th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.amount")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important"></th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.value")</th>
+                    <th class="account_history_th account_history_th"  style="background:#5ceea4 !important"></th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.price")</th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.fee")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each .}}
+                    {{> trade-history-row}}
+                {{/each}}
+            </tbody>
+        </table> -->
+        <!-- <div class="spinner" style="display:none"><i class="spin glyphicon glyphicon-refresh"></i></div>
+        </div>
+    </script> -->
+
+
+    <script id="trade-history-row-template" type="text/x-handlebars-template">
+        <table id="trade_history_table" class="table table-striped responsive">
+            <thead>
+                 <tr>
+                    <th class="account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.time")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.market")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.type")</th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.amount")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important"></th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.value")</th>
+                    <th class="account_history_th account_history_th"  style="background:#5ceea4 !important"></th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.price")</th>
+                    <th class="money-heading account_history_th"  style="background:#5ceea4 !important">@Messages("terminology.fee")</th>
+                    <th class="account_history_th"  style="background:#5ceea4 !important"></th>
+                </tr>
+            </thead>
+        {{#each this}}
+        <tr>
+            <td>{{created}}</td>
+            <td>{{base}}/{{counter}}</td>
+            <td>{{order_type}}</td>
+            <td class="money">{{amount}} {{base}}</td>
+            <td></td>
+            <td class="money">{{value}} {{counter}}</td>
+            <td></td>
+            <td class="money">{{price}} {{counter}}</td>
+            <td class="money">{{fee}} {{counter}}</td>
+            <td></td>
+        </tr>
+        {{/each}}
+    </table>
+    </script>
+
+  <!--   <script id="deposit-withdraw-history-template" type="text/x-handlebars-template">
+        <div class="tablescroller">
+        <table class="table table-striped responsive">
+            <thead>
+                <tr>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.time")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.type")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.currency")</th>
+                    <th class="money-heading account_history_th" style="background:#65d7ff !important">@Messages("terminology.amount")</th>
+                    <th class="money-heading account_history_th" style="background:#65d7ff !important">@Messages("terminology.fee")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.address")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.note")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each .}}
+                    {{> dw-history-row}}
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="spinner" style="display:none"><i class="spin glyphicon glyphicon-refresh"></i></div>
+        </div>
+    </script> -->
+
+    <script id="deposit-withdraw-history-row-template" type="text/x-handlebars-template">
+        <table id="dw_history_table" class="table">
+            <thead>
+                <tr>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.time")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.type")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.currency")</th>
+                    <th class="money-heading account_history_th" style="background:#65d7ff !important">@Messages("terminology.amount")</th>
+                    <th class="money-heading account_history_th" style="background:#65d7ff !important">@Messages("terminology.fee")</th>
+                    <th class="account_history_th" style="background:#65d7ff !important">@Messages("terminology.address")</th>
+                   <th class="account_history_th" style="background:#65d7ff !important">Remarks</th>
+
+                    <th class="account_history_th" style="background:#65d7ff !important">Status</th>
+                </tr>
+            </thead>
+
+        {{#each this}}
+        <tr>
+        <!-- <tr class="{{klass}}"> -->
+            <td style="white-space: nowrap;">{{created}}</td>
+            <td>{{typ}}</td>
+            <td>{{currency}}</td>
+            <td class="money">{{amount}}</td>
+            <td class="money">{{fee}}</td>
+            <td>{{address}}</td>
+            <td>{{remarks}}</td>
+            <td>{{status}}</td>
+        </tr>
+        {{/each}}
+     </table>
+    </script>
+}
+@content.session_footer()

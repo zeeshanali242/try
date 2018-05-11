@@ -1,0 +1,92 @@
+@(SupportTicketForm: Form[controllers.Registration.SupportTicketInfo])(implicit request: RequestHeader, messages: Messages)
+@import helper._
+
+@scripts = {
+    <script src="@routes.Assets.at("js/common_header.js")"></script>
+}
+
+
+@content._chrome(Messages("auth.password.title") , scripts=scripts,option=None) {
+
+  <div class="content-wrapper">
+    <div class="row">
+        <section class="col-lg-12 connectedSortable support_ticket_page">
+            <div class="how_it_works">
+              <h6>Support Ticket</h6>
+                <div class="color_stip">SUPPORT HOURS: 10AM to 8PM</div>
+                <div class="support">
+                  <div class="col-lg-4">
+                  <div class="support_inquiries">
+                      <h5>send your inquiries</h5>
+                        <form id="suppForm" action="@controllers.routes.Registration.support().absoluteURL()" autocomplete="off" method="post">
+                          <ul
+                          <li>  
+                          @CSRF.formField
+                              @helper.inputText(
+                              SupportTicketForm("name"),
+                              'class -> "form-control",
+                              'required -> "field can't be empty")
+                          </li>
+                          <li>  
+                          @CSRF.formField
+                              @helper.inputText(
+                              SupportTicketForm("email"),
+                              'required -> "field can't be empty"
+                                  )
+                                 <!-- <span class="support_legend">Email</span> --> 
+                          </li>
+                          <li> 
+                          @CSRF.formField 
+                          
+                              @helper.inputText(
+                              SupportTicketForm("phone"),
+                              'required -> "field can't be empty")
+                          </li>
+                          <li>  
+                          @CSRF.formField
+                               @helper.inputText(
+                               SupportTicketForm("category"),
+                               'required -> "field can't be empty")
+                          </li>
+                                <li>  
+                                @CSRF.formField
+                               @helper.inputText(
+                               SupportTicketForm("description"),
+                                'required -> "field can't be empty")
+
+                          </li>
+                         
+                               <div class="support_submit">
+                            <input type="submit" name="support_submit" onclick="return alert('data sent');" value="submit" />
+                          </div>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+                    <div class="col-lg-8">
+                        <div class="support_content">
+                            <p>Got a query or facing an issue? </p>
+                            <p>Our support team is happy to assist you. Here's what you can do for quick resolution while raising a ticket:</p> 
+                            <ol>
+                                <li>For authenticator issues kindly go through this link: https://goo.gl/W6gPzH</li> 
+                                <li>Due to a huge backlog in KYC verification, we have temporarily halted new user registrations.</li>
+                                <li>For INR deposit/withdrawal issues kindly share relevant details: Updated bank statement, screenshot of the transaction, transaction reference number along with date & time of the transaction</li> <li>For cryptocurrency deposit/withdrawal issues kindly share relevant details: Transaction hash, coin type, quantity and date & time of the transaction</li>
+                            </ol>
+                            <p>For regular updates : Follow us on 
+                                <span class="support_social">
+                                  <a href="#/"><i class="fab fa-twitter"></i></a>
+                                    <a href="#/"><i class="fab fa-facebook-f"></i></a>
+                                </span>
+                            </p>
+                            <p>Kindly avoid raising multiple support tickets for the same issue. Additionally, we request you to be polite and avoid using profanity towards our customer support team as they are working diligently to resolve your queries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+  </div>
+  
+    
+}
+ 

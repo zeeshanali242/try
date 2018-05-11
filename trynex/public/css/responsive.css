@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media (max-width: 575px) {
+	.Mask{ height:auto;}
+	.loginfields{ position:static; width:100%;}
+	.formtitle {    padding-top: 10%;}
+	.logintagline{font-size: 14px; letter-spacing: 0px; margin: 10px 0px 20px;}
+	.rectangle{ width:100%; height:40px;}
+	.pass{ height:40px;}
+	.passfield span{line-height: 2.2; font-size:11px;}
+	.person{ margin:0 auto; width:31px;}
+	.Login{margin: 10px 0px;display: block; font-size: 28px;}
+	.loginbutton input[type="submit"]{ float:none;}
+	.loginbutton label{ width:100%; text-align:center; margin-top:10px;}
+	.login img{ margin:3px auto 0px; width:auto;}
+	.userinfo{margin-top: 0px;}
+	.username_designation i{ right:-20px;}
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) { ... }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991px) { ... }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199px) { ... }

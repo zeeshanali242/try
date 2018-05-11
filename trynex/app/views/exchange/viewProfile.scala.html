@@ -1,0 +1,285 @@
+@(user: securesocial.core.SocialUser,errorMsg: Option[String] = None)(implicit request: RequestHeader, messages: Messages)
+
+@scripts = {
+<script src="@routes.Assets.at("js/view_kyc_profile.js")"></script>
+<script src="@routes.Assets.at("js/common_header.js")"></script>
+<script src="@routes.Assets.at("js/ExchangeTfa.js")"></script>
+}
+
+@exchange._chrome(user,Messages("chrome.exchange.navigation.history.title"), "list", scripts) {
+  <div>
+    <div class="row">
+        <div class="user_profile view-user-d">
+            <div class="col-lg-3">
+                <h3>Personal Details</h3>
+                <div class="user-info">
+                    <!-- <div class="user-bg">
+                        <div class="avatar"><img src="@routes.Assets.at("img/avatar-1.png")" class="small">
+                        <div class="lcon-link"><a href="#"><img src="@routes.Assets.at("img/n1.png")"></a><a href="#" class="last"><img src="@routes.Assets.at("img/delete.png")"></a></div></div>
+                    </div> -->
+                    <div class="detail">
+                        <p><label>Name</label><span><strong>@user.first_name</strong></span></p>
+                       <!--  <p><label>Profile</label><span style="color:#7f8fa4;"><strong>Administrator</strong></span></p> -->
+                        <hr>
+                        <div class="address">
+                        <!-- <p><span class="icon"><img src="@routes.Assets.at("img/n2.png")"></span><span>London, United Kingdom</span></p> -->
+                        <p><span class="icon"><img src="@routes.Assets.at("img/n3.png")"></span><span>@user.email</span></p>
+                        <p><span class="icon"><img src="@routes.Assets.at("img/n4.png")"></span><span>@user.id</span></p>
+                        </div>
+                        <hr>
+                        <!-- <div class="summry">
+                         <h4>Summary</h4>
+                         <label>Total Income</label>
+                         <p><span class="income">$39,584</span><span class="dis">12.5%</span><span class="info-icon"><img src="@routes.Assets.at("img/n5.png")"></span></p>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="user-info" id="acct-info">
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="user_profile view-user-d">
+            <div class="col-lg-3" id="testing">
+               
+            </div>
+        </div> -->
+
+        <div class="view-user-d field-d">
+        <div class="col-lg-5" id="kycdetails">
+          
+           </div>
+        </div>
+
+        <div class="view-user-d doc-d">
+        <div class="col-lg-4" id="kycdocuments">
+           
+           </div>
+        </div>
+
+        
+        <div class="view-user-d bank-d clearfix">
+        <div class="col-lg-12" id="bankdetails">
+           
+            </div>
+        
+            </div>
+        
+    </div>
+    <div class="modal fade" id="tfa-enable-modal" tabindex="-1" role="dialog" aria-labelledby="tfa-enable-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tfa-disable-modal" tabindex="-1" role="dialog" aria-labelledby="tfa-disable-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="tfa-disable-modal">@Messages("tfa.off.title")</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Messages("terminology.cancel")</button>
+                    <button type="button" class="btn btn-primary">@Messages("tfa.off.title")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="view_kyc_details" type="text/x-handlebars-template">
+                <h3>Kyc Details</h3>
+               <div class="user-info">
+                    <div class="row bg-wh"><label>Date of Birth</label><span>{{pancard_dob}}</span></div>
+                    <div class="row bg-wh"><label>Full Name</label><span>{{aadhar_name}}</span></div>
+                    <div class="row bg-wh"><label>Pan Number</label><span>{{pancard_number}}</span></div>
+                    <div class="row bg-wh"><label>AADHAAR NUMBER</label><span>{{aadhar_number}}</span></div>
+                    <!-- <div class="row bg-wh"><label>GROSS ANNUAL INCOME</label><span>1500000</span></div> -->
+                    <div class="row bg-wh"><label>RESIDENTIAL STATUS</label><span>INDIAN</span></div>
+                    <div class="row bg-wh"><label>STREET ADDRESS</label><span>{{aadhar_address}}</span></div>
+                    <!-- <div class="row bg-wh"><label>City</label><span> </span></div>
+                    <div class="row bg-wh"><label>State</label><span> </span></div> -->
+                    <div class="row bg-wh"><label>PinCode</label><span> {{aadhar_pincode}}</span></div>
+                    <!-- <div class="less"><a href="#" class="show-hide">View Less</a></div> -->
+               </div>
+
+    </script>
+
+ <script id="view_bank_details" type="text/x-handlebars-template">
+              @if(user.kyc=="verified") {
+                <h3>Bank Details</h3>
+                <div class="user-info clearfix">
+               
+                    <div class="col-lg-6">
+                    <div class="row bg-wh color-b"><label>IFSC CODE</label><span>{{user_ifsc_code}}</span></div>
+                    <div class="row bg-wh color-g"><label>BANK NAME</label><span>{{bank_name}}</span></div>
+                    <div class="row bg-wh color-b"><label>BRANCH NAME</label><span>{{bank_branch_name}}</span></div>
+                    <div class="row bg-wh color-g"><label>MOBILE NUMBER</label><span>{{user_mobile_no}}</span></div>
+                    </div>
+                
+                    <div class="col-lg-6 last">
+                    <div class="row bg-wh color-b"><label>ACCOUNT NUMBER</label><span>{{user_account_no}}</span></div>
+                    <div class="row bg-wh color-g"><label>ACCOUNT HOLDER'S NAME</label><span>{{user_account_holder_name}}</span></div>
+                    <div class="row bg-wh color-b"><label>ACCOUNT TYPE</label><span>SAVINGS</span></div>
+                    <div class="row">
+                       
+                    <div class="note">
+                     <h4>Note:</h4><p>The bank account will be linked to your Trynex account. All INR transaction will be processed for only the linked bank account.</p>
+                    </div>
+                    </div>
+                    </div>
+
+                </div>
+             }
+    </script>
+
+
+<script id="view_kyc_documents" type="text/x-handlebars-template">
+            <h3>Kyc Documents</h3>
+           <div class="user-info info-div">
+            @if(user.kyc=="verified") {
+            <div class="row bg-wh color-b">
+                <div class="col-lg-7 no-padding">
+                <h4>PAN CARD</h4>
+                <p>Required as IT Departments norms</p>
+                <p> Maximum File Size:<span>3.5 MB</span></p>
+                <p>Accepted Formats:<span>JPG, PNG</span></p>
+                </div>
+                <div class="col-lg-5 no-padding"><div class="id-img"><img src="@routes.Assets.at("img/add.jpg")"><span class="icon"><img src="@routes.Assets.at("img/tick.png")"><br><b> <a href="{{pancard_image_path}}" target="_blank">Front</a></b></span></div></div>
+            </div>
+
+            <div class="row bg-wh color-g">
+                <div class="col-lg-7 no-padding">
+                <h4>AADHAAR CARD</h4>
+                <p>Required as IT Departments norms</p>
+                <p> Maximum File Size: <span>3.5 MB</span></p>
+                <p>Accepted Formats: <span>JPG, PNG</span></p>
+                </div>
+                <div class="col-lg-5 no-padding"><div class="id-img"><p><img src="@routes.Assets.at("img/add.jpg")"><span class="icon"><img src="@routes.Assets.at("img/tick.png")"><br><b><a href="{{aadhar_front_image_path}}" target="_blank">Front</a></b></span></p>
+                <p><img src="@routes.Assets.at("img/add.jpg")"><span class="icon"><img src="@routes.Assets.at("img/tick.png")"><br><b><a href="{{aadhar_back_image_path}}" target="_blank">Back</a></b></span></p></div></div>
+            </div>
+           <!-- <div class="row bg-wh color-y">
+                <div class="col-lg-7 no-padding">
+                <h4>PHOTOGRAPH</h4>
+                <p>Required as IT Departments norms</p>
+                <p> Maximum File Size:<span>3.5 MB</span></p>
+                <p>Accepted Formats:<span>JPG, PNG</span></p>
+                </div>
+                <div class="col-lg-5 no-padding"><div class="id-img"><img src="@routes.Assets.at("img/add.jpg")"><span class="icon"><img src="@routes.Assets.at("img/tick.png")"><br><b>Front</b></span></div></div>
+            </div> -->
+            <div class="row bg-wh color-r">
+                <div class="note"><h4>Note:</h4><p>These Documents are required for KYC complete accounts.</p></div>
+            </div>
+            }
+            @if(user.kyc=="notApplied"){
+                    <h5>Please complete your kyc to activate trading</h5>
+                    <a id="user-info" href="@controllers.routes.Application.getSignzyRedirectUrl().absoluteURL()">Please verify your KYC</a>
+                  }
+                  @if(user.kyc=="pending"){
+                    <h5>Your KYC status is Pending</h5>
+                  }
+                  @if(user.kyc=="rejected"){
+                    <h5>your KYC status is rejected due to some reason </h5>
+                    <a id="user-info" href="@controllers.routes.Application.getSignzyRedirectUrl().absoluteURL()">Please verify your KYC</a>
+                  }
+                  <span style="color: red;margin-left: 125px">@errorMsg</span>
+           </div>
+           
+
+    </script>
+     <script id="totp-otps-template" type="text/x-handlebars-template">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="tfa-enable-modal">@Messages("tfa.on.title")</h4>
+        </div>
+        <div class="modal-body">
+            <p class="text-justify">@Messages("tfa.otps.explanation")</p>
+            <div class="center-block"><ol>{{#otps}}<li>{{.}}</li>{{/otps}}</ol></div>
+        <div class="modal-footer">
+            <nav>
+                <ul class="pager">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Messages("terminology.cancel")</button>
+                    </div>
+                    <li class="next"><a id="tfa-printing-complete" href="#">@Messages("tfa.codes.next") <span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </script>
+
+    <script id="totp-secret-template" type="text/x-handlebars-template">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="tfa-enable-modal">@Messages("tfa.on.title")</h4>
+        </div>
+        <div class="modal-body">
+
+            <p class="text-justify">@Messages("tfa.google.explanation")</p>
+            <div class="center-block qr-code" id="tfa-enable-qr"></div>
+            <div class="small text-center">{{secret}}</div>
+            <form role="form">
+                <div class="from-group">
+                    <label for="code" class="control-label">@Messages("terminology.code")</label>
+                    <input class="form-control code" name="code" type="text"/>
+                </div>
+                <div class="from-group">
+                    <label for="password" class="control-label">@Messages("terminology.password")</label>
+                    <input class="form-control password" name="password" type="password"/>
+                </div>
+                <!-- this hack makes sure that the submit event is triggered when you press enter -->
+                <input type="submit" class="hidden"/>
+            </form>
+            </div>
+
+        <div class="modal-footer">
+            <nav>
+                <ul class="pager">
+                    <li class="previous"><a id="tfa-printing-incomplete" href="#"><span aria-hidden="true">&larr;</span> @Messages("tfa.codes.prev")</a></li>
+                    <li class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Messages("terminology.cancel")</button>
+                        <button type="button" class="btn btn-primary">@Messages("tfa.on.title")</button>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </script>
+     <script id="acct-info-template" type="text/x-handlebars-template">
+         <p>
+           {{#TFAEnabled}}
+                <p>@Messages("exchange.account.tfa_login"): @Messages("terminology.on")</p>
+                <button type="submit" class="btn btn-danger" id="turnoff-tfa">@Messages("tfa.off.title")</button>
+            {{/TFAEnabled}}
+            {{^TFAEnabled}}
+                <p>@Messages("exchange.account.tfa_login"): @Messages("terminology.off")</p>
+                <button type="submit" class="btn btn-primary" id="turnon-tfa">@Messages("tfa.on.title")</button>
+            {{/TFAEnabled}}
+        </p>
+
+
+    </script>
+    <script id="turn-off-tfa-template" type="text/x-handlebars-template">
+        <p class="text-justify">@Messages("tfa.off.explanation")</p>
+        <form role="form">
+            <div class="from-group">
+                <label for="code" class="control-label">@Messages("terminology.code")</label>
+                <input class="form-control code" name="code" type="text"/>
+            </div>
+            <div class="from-group">
+                <label for="password" class="control-label">@Messages("terminology.password")</label>
+                <input class="form-control password" name="password" type="password"/>
+            </div>
+            <!-- this hack makes sure that the submit event is triggered when you press enter -->
+            <input type="submit" class="hidden"/>
+        </form>
+    </script>
+  </div>
+
+@content.footer()
+
+}
+
+

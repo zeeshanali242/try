@@ -1,0 +1,447 @@
+@(user: securesocial.core.SocialUser)(implicit request: RequestHeader, messages: Messages)
+
+@scripts = {
+    <script src="@routes.Assets.at("js/exchange_index.js")"></script>
+    <script src="@routes.Assets.at("js/common_header.js")"></script>
+}
+
+@exchange._chrome(user,Messages("chrome.exchange.navigation.dashboard.title"), "dashboard", scripts) {
+<!--
+    <div class="row">
+        <div id="big-tickers">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Messages("terminology.balance")</div>
+                <div id="balance">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="big-tickers-template" type="text/x-handlebars-template">
+        {{#each this}}
+            <div class="col-sm-3 col-md-2">
+                <dl class="dl-horizontal dl-small">
+                    <dt><i class="glyphicon glyphicon-{{icon}}" style="color: {{color}};"></i></dt><dd class="big-ticker-pair">{{base}}/{{counter}}</dd>
+                    <dt>@Messages("bigtickers.Last"):</dt> <dd class="money">{{last}}</dd>
+                    <dt>@Messages("bigtickers.Low"):</dt> <dd class="money">{{low}}</dd>
+                    <dt>@Messages("bigtickers.High"):</dt> <dd class="money">{{high}}</dd>
+                    <dt>@Messages("bigtickers.Vol"):</dt> <dd class="money">{{volume}}</dd>
+                </dl>
+            </div>
+        {{/each}}
+    </script>
+
+    <script id="balance-template" type="text/x-handlebars-template">
+        <table class="table table-striped responsive">
+            <thead>
+                <tr>
+                    <th>@Messages("terminology.currency")</th>
+                    <th class="money-heading">@Messages("terminology.total")</th>
+                    <th class="money-heading">@Messages("terminology.hold")</th>
+                    <th class="money-heading">@Messages("terminology.available")</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this}}
+                <tr>
+                    <td>{{currency}}</td>
+                    <td class="money">{{amount}}</td>
+                    <td class="money">{{hold}}</td>
+                    <td class="money">{{available}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+    @*
+    <script id="fake-money-form-template" type="text/x-handlebars-template">
+        <form role="form">
+            <div class="form-group">
+                <label class="control-label" for="currency">@Messages("terminology.currency")</label>
+                <select class="form-control" id="currency" name="currency">
+                    {{#each .}}
+                    <option value="{{.}}">{{.}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="amount">@Messages("terminology.amount")</label>
+                <input class="form-control" name="amount" id="amount" type="text">
+            </div>
+            <button type="submit" class="add btn btn-primary">@Messages("account.fakemoney.add")</button>
+            <button type="submit" class="subtract btn btn-primary">@Messages("account.fakemoney.subtract")</button>
+        </form>
+    </script>
+    *@ -->
+
+    <div class="row">
+        <section class="col-lg-12 connectedSortable trading_rules wallets">
+            <div class="how_it_works">
+                <h6>TRYNEX WALLETS</h6>
+                <div class="color_stip" style="background:#3475df;">PORTFOLIO VALUE : INR <span id="inr"></span></div>
+
+                <div class="cryptocurrency" id="balance">
+
+
+                        </div>
+            </div><br><br>
+            <div class="how_it_works">
+                <h6>INR Wallets</h6>
+                <div class="payment_accordian">
+                  <div class="panel-group" id="accordion">
+                    <div class="panel panel-default payment_overview">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">OVERVIEW</a>
+                        </h4>
+                      </div>
+                      <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <h4>Total amount in wallet</h4>
+                            <div class="stip"></div>
+                            <div class="total_amount">
+                                <div class="total_div">total</div>
+                                <div class="total_div">in order</div>
+                                <div class="total_div">available</div>
+                            </div>
+                            <div class="stip" style="margin-bottom:0px;"></div>
+                            <div class="total_values">
+                                <div class="total_div" id="total_inr">0.00 INR</div>
+                                <div class="total_div" id="in_order_inr">0.00 INR</div>
+                                <div class="total_div" id="avail_inr">0.00 INR</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default banktransfer">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">DEPOSIT VIA BANK TRANSFERS</a>
+                        </h4>
+                      </div>
+                      <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <h4>Bank Account Details</h4>
+                            <div class="stip"></div>
+                            <div class="detail_instrucion">
+                                <div class="acc_detail">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="account_details">
+                                        <tbody>
+                                            <tr>
+                                                <td>Account Number</td>
+                                                <td>TBD</td>
+                                                <td><a href="#/">Copy</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>IFSC</td>
+                                                <td>TBD</td>
+                                                <td><a href="#/">Copy</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Account Holder Name</td>
+                                                <td>TBD</td>
+                                                <td><a href="#/">Copy</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Remarks/Description</td>
+                                                <td>TBD</td>
+                                                <td><a href="#/">Copy</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Transaction Fee 9UPI) : 0%</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="instructions">
+                                    <h6>TBD:</h6>
+
+                                </div>
+                            </div>
+                            <div class="stip"></div>
+                            <div class="payment_gateways">
+                                <ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default payment_gateway">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">DEPOSIT VIA PAYMENT GATEWAY</a>
+                        </h4>
+                      </div>
+                      <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <h4>Deposit via payment gateway 1</h4>
+                            <div class="stip"></div>
+                            <p>Major Listed Banks: Axis Bank, ICICI Bank, SBI Bank, HDFC Bank, Induslnd Bank</p>
+                            <p>The Banks which are not listed in payment gateway have voluntarily withdrawn from cryptocurrency transactions</p>
+
+                            <p>Deposit fee: Flat 2%</p>
+
+                            <p>Note: Users will bear a flat payment gateway charge of 2% on the amount deposited.</p>
+                           <!--  <form action="" method="" class="pay_gateway">
+                                <ul>
+                                    <li><input type="text" name="amount" placeholder="Amount" /></li>
+                                    <li class="paybutton"><input type="submit" name="pay" value="pay" /></li>
+                                </ul>
+                            </form> -->
+                             <form action="https://test.fonepaisa.com/pg/pay" method="post"
+                               id="forwardPG">
+                          <input type="hidden" name="msg_name" value="request_payment">
+                           <input type="hidden" name="id" value="FPTEST">
+                           <input type="hidden" name="merchant_id" value="FPTEST">
+                           <input type="hidden" name="merchant_display" value="fonePaisa TEST MERCHANT">
+                           <input type="text" name="invoice_amt" value="" id="payAmountId">
+                           <input type="hidden" name="email" value=@user.email>
+                            <input type="hidden" name="mobile_no" value=@user.mobile_number>
+                             <input type="hidden" name="callback_url" value="http://localhost:9000/wallet">
+                             <input type="hidden" name="callback_failure_url" value="https://test.fonepaisa.com/tpgt/fail.jsp">
+                              <input type="hidden" name="invoice" id="invoiceId" value="">
+                              <input type="hidden" name="sign" id="signId" value="">
+                              <input type="button" name="Pay" value="pay" id="paySubmitId" />
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div id="depositwithdraw">
+            </div>
+            <div class="modal fade" id="withdraw-confirm-modal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">@Messages("depositwithdraw.withdraw.modal.confirmwithdrawal")</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>@Messages("depositwithdraw.withdraw.modal.areyousurewithdraw")
+                                <span id="withdraw-confirm-amount"></span>
+                                <span id="withdraw-confirm-currency1"></span> @Messages("depositwithdraw.withdraw.modal.to")
+                                <span id="withdraw-confirm-address"></span> @Messages("depositwithdraw.withdraw.modal.andreceive")
+                                <span id="withdraw-confirm-value"></span>
+                                <span id="withdraw-confirm-currency2"></span> @Messages("depositwithdraw.withdraw.modal.afterthewithdrawalfeeof")
+                                <span id="withdraw-confirm-fee"></span>
+                                <span id="withdraw-confirm-currency3"></span>?
+                            </p>
+                            <form class="form-horizontal" role="form" id="withdraw-confirm-tfa-form">
+                                <label for="tfa" class="col-sm-12">@Messages("terminology.code")</label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" placeholder="000000" id="withdraw-confirm-tfa" type="text">
+                                </div>
+                            </form>
+                            <form class="form-horizontal" role="form" id="withdraw-confirm-otp-form">
+                                <label for="tfa" class="col-sm-12">Enter your OTP</label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" placeholder="000000" id="withdraw-confirm-otp" type="text">
+                                </div>
+                            </form>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="withdraw-confirm-cancel" class="btn btn-default" data-dismiss="modal">@Messages("terminology.cancel")</button>
+                            <button type="button" id="withdraw-confirm-submit" class="btn btn-primary" data-dismiss="modal">@Messages("depositwithdraw.withdraw.modal.requestwithdrawal")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+      <div class="walletpopup">
+    <div class="signupoverlay otp_popup"></div>
+    <div class="signuppopup withdrawal_form otp_popup">
+        <div class="avtartname">Aternity withdrawal</div>
+
+        <form action="" method="">
+            <ul>
+                <li><input type="text"  placeholder="Volume" required /></li>
+                <li><input type="text"  placeholder="Destination Wallet Address" /></li>
+                <li><input type="text"  placeholder="remarks" /></li>
+                <div class="withdrawal_fees">
+                    <span>Withdrawal Fees</span>
+                    <div class="withdrawal_price">2.5AE</div>
+                </div>
+                <div class="withdraw_note">
+                    <span>Note:</span>
+                    <p>Please verify the destination wallet address. Once submitted, the withdrawal request cannot be reverted back.</p>
+                </div>
+                <li class="with_next"><button id="next">Next</button><button id="cancel">Cancel</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+ <script id="balance-template" type="text/x-handlebars-template">
+        <table class="crypto_currency notscroll" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th colspan="2">@Messages("terminology.currency")</th>
+                    <th>@Messages("terminology.total")</th>
+                    <th>@Messages("terminology.hold")</th>
+                    <th>@Messages("terminology.available")</th>
+                    <th colspan="3">@Messages("terminology.transact")</th>
+                </tr>
+            </thead>
+          </table>
+          <table class="crypto_currency" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+             {{#each this}}
+               <tr>
+                    <td><img src="@routes.Assets.at("img/{{currency}}.png")" /></td>
+                    <td>{{currency}}</td>
+                    <td>{{amount}}</td>
+                    <td>{{hold}}</td>
+                    <td>{{available}}</td>
+                    @{if(user.kyc=="verified") {
+                      <td><button class="action_button" exchange-base="{{currency}}">Deposit</button></td>
+                      <td><button class="withdrawal" exchange-base="{{currency}}">Withdraw</button></td>
+                    }else if(user.kyc=="notApplied") {
+                        <td><button  id="widrawDeposit" exchange-base="{{currency}}">Deposit</button></td>
+                        <td><button id="widrawDeposit" exchange-base="{{currency}}">Withdraw</button></td>
+                      }
+                    else if(user.kyc=="pending") {
+                        <td><button  id="widrawDeposit" exchange-base="{{currency}}">Deposit</button></td>
+                        <td><button id="widrawDeposit" exchange-base="{{currency}}">Withdraw</button></td>
+                      }
+                    else if(user.kyc=="rejected") {
+                        <td><button  id="widrawDeposit" exchange-base="{{currency}}">Deposit</button></td>
+                        <td><button id="widrawDeposit" exchange-base="{{currency}}">Withdraw</button></td>
+                      }
+                }
+                    <td><button exchange-base="{{currency}}" exchange-counter="INR" class="trade">Trade</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+    </script>
+     <script id="crypto-deposit-template" type="text/x-handlebars-template">
+
+<div class="actionpoupup actionpoupup-{{currency}}">
+    <div class="signupoverlay  otp_popup" id="{{currency}}"></div>
+    <div class="signuppopup withdrawal_form otp_popup">
+        <div class="avtartname">{{currency}} deposit</div>
+        <div class="barcode_placeholder">
+            <span>Your Secure Wallet Address</span>
+            <div class="barcode">
+                 <div class="center-block qr-code" id="deposit-{{currency}}-qr"></div>
+            </div>
+            <div class="barcodeid">{{main_address}}</div>
+            <div class="depositlimit">
+                <h6>minimum deposit limit</h6>
+                <span>0.001 {{currency}}</span>
+            </div>
+            <div class="action_note">
+                <span>note:</span>
+                <p>Please only transfer <b>{{currency}}</b> token to this wallet address. Sending any other token may result into a loss and no wallet credit.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+<script id="crypto-withdraw-form-template" type="text/x-handlebars-template">
+
+  <div class="walletpopup walletpopup walletpopup-{{currency}}">
+    <div class="signupoverlay otp_popup" id="{{currency}}"></div>
+    <div class="signuppopup withdrawal_form otp_popup">
+        <div class="avtartname">{{currency}} withdrawal</div>
+
+        <form class="withdrawal_main_form" id="withdraw-{{currency}}">
+            <ul>
+                <li><input class="amount" type="text"  placeholder="Volume"  required /></li>
+                <li><input class="address" type="text"  placeholder="Destination Wallet Address" /></li>
+                <li><input class="remarks" type="text"  placeholder="remarks" /></li>
+
+                <div class="withdrawal_fees">
+                    <span>Withdrawal Fees</span>
+                    <div class="withdrawal_price">{{withdraw_constant}} {{currency}}</div>
+                </div>
+                <div class="withdraw_note">
+                    <span>Note:</span>
+                    <p>Please verify the destination wallet address. Once submitted, the withdrawal request cannot be reverted back.</p>
+                </div>
+                <li class="with_next"><button type="submit" id="{{currency}}">Next</button>
+                <button class="cancel" id="{{currency}}">Cancel</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+</script>
+
+    <script id="dw-ltc-template" type="text/x-handlebars-template">
+
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+
+    <script id="dw-btc-template" type="text/x-handlebars-template">
+
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+
+    <script id="dw-inr-template" type="text/x-handlebars-template">
+
+
+    </script>
+    <script id="dw-eth-template" type="text/x-handlebars-template">
+
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+     <script id="dw-bch-template" type="text/x-handlebars-template">
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+
+     <script id="dw-dash-template" type="text/x-handlebars-template">
+
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+
+     <script id="dw-xrp-template" type="text/x-handlebars-template">
+
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+
+     <script id="dw-zec-template" type="text/x-handlebars-template">
+
+            {{> crypto-deposit}}
+            {{> crypto-withdraw-form}}
+    </script>
+
+ <div class="reset_password_bg">
+ </div>
+ <div id="depositepopup" class="reset_password_popup withdrawaldepositepopup">
+   @if(user.kyc=="notApplied") {
+     <h4>Your KYC is not completed yet</h4>
+     <a href="@controllers.routes.Application.getSignzyRedirectUrl().absoluteURL()">Complete your KYC</a>
+   }
+   @if(user.kyc=="pending") {
+     <h4>Your KYC status is Pending</h4>
+   }
+   @if(user.kyc=="rejected") {
+     <h4>Your KYC status is Rejected</h4>
+     <a href="@controllers.routes.Application.getSignzyRedirectUrl().absoluteURL()">Please verify your KYC</a>
+   }
+ <div class="restclosebutton">
+    <i class="fa fa-times" aria-hidden="true"></i>
+ </div>
+ </div>
+
+}
+@content.session_footer()

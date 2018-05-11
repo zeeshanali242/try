@@ -1,0 +1,64 @@
+@(first_name:String,email: String, creationDate: String, ip: String, os: String, browser: String)(implicit messages: Messages)
+@Messages("mails.greeting")
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Login Activity</title>
+<style>
+	*{ margin:0px; padding:0px; box-sizing:border-box;}
+	body{ margin:0px; padding:0px; box-sizing:border-box;}
+	.wrapper {    width: auto; margin: 0 auto;}
+</style>
+</head>
+
+<body>
+	<div class="activateaccount wrapper">
+    	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        	<thead>
+            	<tr style="background:#009efd;">
+                	<th style="padding:6px 0px;"></th>
+                </tr>
+            </thead>
+            <tbody style="padding:20px; display:block; width:100%; box-sizing:border-box; border-left: 1px solid #009efd; border-right: 1px solid #2af598;">
+            	<tr>
+                	<td style="color:#000; font-size:14px; font-family:Arial, Helvetica, sans-serif;"><strong style="color:#000; font-size:14px; font-family:Arial, Helvetica, sans-serif;">Subject:</strong> New login activity at Trynex</td>
+                </tr>
+            	<tr>
+                	<td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Dear <span  style="color:#000;">@email</span></td>
+
+                </tr>
+                <tr>
+                	<td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">This is to notify of a successful login to your account:</td>
+                </tr>
+                <tr>
+                	<td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">
+                    	<ul style="padding:0px; margin:0px;">
+                        	<li style="list-style:none; margin-bottom:5px; overflow:hidden;"><strong style="color:#000; font-weight:normal; width:90px; display:block; float:left;"">Login Time:</strong> <span style="display:block; float:right; width:80%;">@creationDate</span> </li>
+                            <li style="list-style:none; margin-bottom:5px; overflow:hidden;"><strong style="color:#000; font-weight:normal; width:90px; display:block; float:left;">IP Address:</strong> <span style="display:block; float:right; width:80%;">@ip</span>  </li>
+                            <li style="list-style:none; margin-bottom:5px; overflow:hidden;"><strong style="color:#000; font-weight:normal; width:90px; display:block; float:left;"">Browser Info:</strong> <span style="display:block; float:right; width:80%;">@browser</span>  </li>
+                            <li style="list-style:none; margin-bottom:5px; overflow:hidden;"><strong style="color:#000; font-weight:normal; width:90px; display:block; float:left;"">User Agent:</strong> <span style="display:block; float:right; width:80%;">@os</span> </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">If this was you: <br>You're good to go! You don't need to do anything. 
+                	<br> <br>If this wasn't you: <br>Someone knows your login details and used it to access your accountplease report to <a href="mailto:@Messages("support@trynex.io.",play.api.Play.current.configuration.getString("email.security").get)">@Messages("support@trynex.io.",play.api.Play.current.configuration.getString("email.security").get)</a>.</td>
+                </tr>
+                <tr>
+                	<td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Happy Trading!</td>
+                </tr>
+                <tr>
+                	<td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Thanks!, <br><span>Team Trynex</span></td>
+                </tr>
+            </tbody>
+            <thead>
+            	<tr style="background:#009efd;">
+                	<td style="color:#000; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding:15px;"><strong style="color:#fff; font-weight:bold;">Disclaimer:</strong> The information in this email is confidential and Trynex owns all proprietary rights over its contents.</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+

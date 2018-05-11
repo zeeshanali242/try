@@ -1,0 +1,43 @@
+@(option:Option[securesocial.core.SocialUser])(implicit request:RequestHeader,message:Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import securesocial.core.UsernamePasswordProvider
+@import helper._
+
+@scripts = {
+    <script src="@routes.Assets.at("js/common_header.js")"></script>
+}
+
+
+@content._chrome("Terms Of Use",scripts=scripts,option=option) {
+<div class="content-wrapper">
+    <div class="row">
+        <section class="col-lg-12 connectedSortable trading_rules support_ticket_page">
+          	<div class="how_it_works">
+            	<h6>Terms of Use</h6>
+                <div class="color_stip" style="background:#70b7d2;"> PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY BEFORE USING THE ONLINE PLATFORMS</div>
+                <div class="page_content">
+                    <div class="col-lg-12">
+                        <div class="support_content">
+                            <p>These User terms and conditions (together with the documents referred to in it) ("Terms") are the terms on which you may make use of our website www.Trynex.in and the associated mobile and software applications (either existing or available in the future) and our digital assets trading services ("Online Platforms"), whether as a guest or a registered user. Use of the Online Platform includes accessing, browsing, or registering to use the Online Platforms. Please read these Terms carefully before you start to use the Online Platforms. </p>
+                            <p>These User terms and conditions (together with the documents referred to in it) ("Terms") are the terms on which you may make use of our website www.Trynex.in and the associated mobile and software applications (either existing or available in the future) and our digital assets trading services ("Online Platforms"), whether as a guest or a registered user. Use of the Online Platform includes accessing, browsing, or registering to use the Online Platforms. Please read these Terms carefully before you start to use the Online Platforms. </p>
+                            <p>1. OTHER APPLICABLE TERMS: </p>
+                            <p>These User terms and conditions (together with the documents referred to in it) ("Terms") are the terms on which you may make use of our website www.Trynex.in and the associated mobile and software applications (either existing or available in the future) and our digital assets trading services ("Online Platforms"), whether as a guest or a registered user. Use of the Online Platform includes accessing, browsing, or registering to use the Online Platforms. Please read these Terms carefully before you start to use the Online Platforms. </p>
+                            <p>2. ABOUT US:</p>
+                            <p>The Online Platforms provide access to an online digital assets exchange that currently facilitates the (i) online trading of Digital Assets including their sale and purchase (either using INR denominated funds or another form of Digital Assets) , (ii) transfer of Funds from a User's INR Wallet into its Linked Banked Account and vice versa, and (iii) online storage of Digital</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="readmore">
+                    <a class="readmoreb" href="#/">read more</a>
+                    <a class="lessmore" href="#/">Less more</a>
+                </div>
+            </div>
+        </section>
+
+
+      </div>
+
+  </div>
+    }
+@content.session_footer()

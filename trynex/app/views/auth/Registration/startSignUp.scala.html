@@ -1,0 +1,209 @@
+@(startForm:Form[controllers.Registration.StartRegistrationInfo],errorMsg: Option[String] = None)(implicit request: RequestHeader, messages: Messages,flash: Flash)
+@import helper._
+@import securesocial.core.UsernamePasswordProvider
+@import play.api.Play.current
+@implicitFieldConstructor = @{ FieldConstructor(auth.inputFieldConstructor.f(_)(messages)) }
+
+@scripts = {
+    <script src="@routes.Assets.at("js/signup.js")"></script>
+}
+
+@auth._chrome( Messages("auth.signup.title"), scripts ) {
+<aside class="main-sidebar">
+  <section class="sidebar">
+  </section>
+</aside>
+<div class="content-wrapper">
+  <div class="signuppage formtitle">
+    <div class="signup_page_form">
+      <div class="sidebar_sighnup">
+            <h5>Welcome to TRYNEX</h5>
+            <div class="signuppage formtitle">
+            <div class="signup_container">
+                <div class="person_title col-lg-12">
+                <img class="person" src="@routes.Assets.at("img/person.png")" alt="Person" title="Person" />
+                <span class="Login">Signup</span>
+
+                    @request.flash.get("success").map { msg =>
+                        <div class="alert alert-info">
+                            @msg
+                        </div>
+                    }
+
+                    @request.flash.get("error").map { msg =>
+                        <div class="alert alert-danger">
+                            @msg
+                        </div>
+                    }
+            </div>
+                <div class="logintagline col-lg-12">
+                    Select your preferred currency
+                </div>
+            </div>
+            @flash.get("error").map { msg =>
+              <div class="alert alert-danger">
+                @Messages(msg)
+              </div>
+            }
+            <div class="signup_blocks">
+                <form id="signup-form" action="@controllers.routes.Registration.handleStartSignUp().absoluteURL(true)"
+          autocomplete="off" method="post">
+                    @CSRF.formField
+                      <div class="curreny_blocks col-lg-12">
+                        <div class="c_block active">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/bitcoin11.png")" alt="Bitcoin" title="Bitcoin" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/bitcoin1.png")" alt="Bitcoin" title="Bitcoin" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="c_block">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/lightcoin11.png")" alt="Litecoin" title="Litecoin" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/lightcoin1.png")" alt="Litecoin" title="Litecoin" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="c_block">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/ripple11.png")" alt="Ripple" title="Ripple" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/ripple1.png")" alt="Ripple" title="Ripple" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="c_block">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/etherium11.png")" alt="Ethereum" title="Ethereum" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/etherium1.png")" alt="Ethereum" title="Ethereum" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="c_block">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/bitcoincash11.png")" alt="Bitcoin Cash" title="Bitcoin Cash" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/bitcoincash1.png")" alt="Bitcoin Cash" title="Bitcoin Cash" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="c_block">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/dash11.png")" alt="Dash" title="Dash" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/dash1.png")" alt="Dash" title="Dash" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="c_block">
+                            <a href="#/">
+                                <div class="currency_name text-center">
+                                    <img class="default_currency" src="@routes.Assets.at("img/currency/zee-cash11.png")" alt="Zcash" title="Zcash" />
+                                    <img class="active_currency" src="@routes.Assets.at("img/currency/zee-cash1.png")" alt="Zcash" title="Zcash" />
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="form_fields_div">
+                        <div class="sign_block">
+                            <li>
+                               @CSRF.formField
+                               @helper.inputText(
+                               startForm(Registration.FirstName),
+                               'placeholder -> "First name",
+                               'required ->""
+                               )
+                                <span class="name">First Name</span>
+                                 <div class="email_error" id="first_error">Please enter the first name</div>
+                                <div class="error_log">User is already exist</div>
+                            </li>
+                            <li>
+                                 @CSRF.formField
+                                @helper.inputText(
+                                startForm(Registration.LastName),
+                                'placeholder -> "Last name",
+                                'required ->""
+                                )
+                                <span class="name">Last Name</span>
+                                 <div class="email_error" id="last_error">Please enter the last name</div>
+                            </li>
+                        </div>
+                        <div class="sign_block">
+                            <li>
+                               @CSRF.formField
+                              @helper.inputText(
+                              startForm(Registration.Email),
+                              'placeholder -> "Email",
+                              'required ->""
+                              )
+                              <span class="name">Email</span>
+                              <div class="email_error" id="email_error">Please enter the email</div>
+                            </li>
+                             <li class="m_numb">
+                               @CSRF.formField
+                               @helper.inputText(
+                               startForm(Registration.MobileNumber),
+                               'placeholder -> "Mobile Number",
+                               'required ->""
+                               )
+                              <span class="country_code" >+91 </span>
+                              <div class="email_error" id="mobile_error">Enter a valid mobile number</div>
+                           </li>
+
+
+                        </div>
+                        <div class="sign_block">
+                           <li>
+                               @CSRF.formField
+                              @helper.inputPassword(
+                              startForm(Registration.Password),
+                              'placeholder -> "Password",
+                              'required ->""
+                              )
+                              <span class="name">Password</span>
+                              <div class="email_error" id="password_error">Password doesn't match</div>
+                            </li>
+                            <li>
+                              <input type="password" name="confirm_password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" required/>
+                              <span class="name">Confirm Password</span>
+                            </li>
+                        </div>
+                        <div class="sign_block">
+
+
+                            <li style="float:left;">
+                               @CSRF.formField
+                              @helper.inputText(
+                              startForm(Registration.Otp),
+                              'placeholder -> "Otp",
+                              'required ->""
+                              )
+                              <span class="name">OTP</span>
+                              <div class="signup-otp-msg">@errorMsg</div>
+                            </li>
+                            <li class="otp_div send_otp"><a id="send_otp" href="#/">send otp?</a></li>
+                            <li class="otp_div resend_otp" id="resend_otp"><a id="otp" href="#/">resend otp?</a></li>
+                        </div>
+                        <div class="signup_tagline">
+                          By continue on Trynex, you agree to our <a href="@controllers.routes.Application.terms().absoluteURL()">"terms & conditions"</a> and <a href="@controllers.routes.Application.privacyPolicy().absoluteURL()">"privacy policy"</a>
+                        </div>
+                        <div class="sign_up_submit">
+                            <label>Already have an account? <a href="@controllers.routes.LoginPage.login().absoluteURL(true)">login</a></label><input type="submit" name="sign_submit" value="submit" />
+                        </div>
+                    </ul>
+
+                </form>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+}
+@content.session_footer()

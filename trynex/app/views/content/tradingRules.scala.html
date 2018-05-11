@@ -1,0 +1,53 @@
+@(option:Option[securesocial.core.SocialUser])(implicit request:RequestHeader,message:Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import securesocial.core.UsernamePasswordProvider
+@import helper._
+
+@scripts = {
+    <script src="@routes.Assets.at("js/common_header.js")"></script>
+    
+}
+@content._chrome("Trading Rules",scripts=scripts,option=option) {
+  <div class="content-wrapper">
+    <div class="row">
+
+        <section class="col-lg-12 connectedSortable trading_rules support_ticket_page">
+            <div class="how_it_works">
+                <h6>Trynex Trading Rules</h6>
+                <div class="color_stip" style="background:#70b7d2;">Trynex operates an open order book trading platform which settles trades in a variety of Digital Assets and INR currency trading pairs.</div>
+                <div class="page_content">
+                    <div class="col-lg-12">
+                        <div class="support_content">
+                            <p>Each user has access to all the trading pairs available on the platform.</p>
+                            <p>Limit Orders</p>
+                            <ul>
+                                <li>A Limit Order is an Order to buy or sell a specified quantity of an Asset at a specified price.</li>
+                                <li>A Limit Order will only ever Fill at the specified price or a better price.</li>
+                                <li>A Limit Order will be immediately posted to the Order Book and can result in a Maker Order or a Taker Order, or an Order that is partially a Maker Order and partially a Taker Order.</li>
+                            </ul>
+                            <p>Orders</p>
+                            <ul>
+                                <li>A Trader can place an order in the order book with certain prerequisites. They must have an Available Balance of the relevant Asset in their Account which is sufficient to cover the total value of the Order plus any applicable fees.</li>
+                                <li>After placing an order, it is considered an open order and the amount of the relevant digital asset becomes subject to a hold. This amount cannot be accessed for withdrawal unless the order is cancelled.</li>
+                                <li>A Trader may cancel an open order at any time before it is fully filled. No fees are charged for cancelled Orders.</li>
+                                <li>A Trader can Buy or Sell a specified quantity of an Asset at the best available price of existing orders on the order book.</li>
+                                <li>There is no guarantee that an Order will fill fully or partially at the price specified. A Market Order may fill fully or partially, based on the quantity of the Order and the quantities of the existing Orders on the Order Book at the time.</li>
+                                <li>A valid order will be immediately posted to the order book.</li>
+                                <li>A trader can have at the most 8 open orders simultaneously in each market. E.g. 8 open orders each in Bitcoin, Ethereum, Ripple and Litecoin markets. So in total 32 open orders.</li>
+                                <li>In a particular market, a trader cannot place a buy order and a sell order at the same price per asset. E.g If a trader places a buy order for 1 Bitcoin at Rs.200,000. They cannot place a sell order of any number of Bitcoins at Rs. 200,000.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="readmore">
+                    <a class="readmoreb" href="#/">read more</a>
+                    <a class="lessmore" href="#/">Less more</a>
+                </div>
+            </div>
+        </section>
+      </div>
+
+  </div>
+}
+@content.session_footer()

@@ -1,0 +1,100 @@
+@(option:Option[securesocial.core.SocialUser])(implicit request: RequestHeader, messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import helper._
+@import securesocial.core.UsernamePasswordProvider
+@import play.api.Play.current
+@implicitFieldConstructor = @{ FieldConstructor(auth.inputFieldConstructor.f(_)(messages)) }
+
+@scripts = {
+    <script src="@routes.Assets.at("js/vendor/jquery.marquee.js")"></script>
+    <script src="@routes.Assets.at("js/adminlte.min.js")"></script>    
+}
+@content.landing_header("Welcome", scripts) {
+    <div class="home_content homecover">
+        <div class="bannersection">
+            <img src="@routes.Assets.at("img/banner.jpg")" />
+            <div class="container">
+                <div class="banner-text">
+                    <h2>India's Next-Generation Cryptocurrency Trading Platform</h2>
+                    <p>Trynex offers individuals and businesses a world class experience to buy and sell a variety of digital currencies like Bitcoin, Ethereum and more digital tokens. Trynex provides traders who demand lightning fast trade execution, stable wallets, and industry-best security practices.</p>
+                    <div class="bannerbuttons">
+                        <a href="@controllers.routes.Registration.startSignUp().absoluteURL(true)">create account</a>
+                        <a href="@routes.Application.homePage().url">view exchange</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrolling_values"  id="pair-scroll" style="min-height:100px;">
+        </div>
+        <div class="blockingpart">
+                <div class="container">
+                    <div class="lr-block odd">
+                        <div class="lrimage"><img src="@routes.Assets.at("img/block4.png")" /></div>
+                        <div class="lrtext">
+                            <h4>World class trading platform</h4>
+                            <p>Trynex offers an intutive interface with real time orderbooks, charting tools, trade history, and a simple order process so you can trade from day one.</p>
+                            <a href="@routes.Application.homePage().url">view exchange</a>
+                        </div>
+                    </div>
+                    <div class="lr-block even">
+                        <div class="lrimage"><img src="@routes.Assets.at("img/block5.png")" /></div>
+                        <div class="lrtext">
+                            <h4>Trusted and Secure</h4>
+                            <p>We undergo regular IT security and financial audits. In addition, 98% of customer digital assets are stored entirely offline.</p>
+                           
+                        </div>
+                    </div>
+                    <div class="lr-block odd">
+                        <div class="lrimage"><img src="@routes.Assets.at("img/block1.png")" /></div>
+                        <div class="lrtext">
+                            <h4>Fast Track verification</h4>
+                            <p>The verification process is fast and secure to enable trading with matter of minutes  after sign up.</p>
+                           
+                        </div>
+                    </div>
+                    <div class="lr-block even">
+                        <div class="lrimage"><img src="@routes.Assets.at("img/block3.png")" /></div>
+                        <div class="lrtext">
+                            <h4>Reliability—24/7/365 support</h4>
+                            <p>Our customer care team is available 24/7/365  so as to provide you a secure and reliable trading experience.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="lr-block odd">
+                        <div class="lrimage"><img src="@routes.Assets.at("img/block2.png")" /></div>
+                        <div class="lrtext">
+                            <h4>No Hidden Fees</h4>
+                            <p>Our real-time, dynamic maker-taker fee schedule provides for a transparent and incentive-based trading experience.</p>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="build-future">
+                <div class="container">
+                    <div class="buildinfo">
+                        <div class="build-text">Build your own future. <br>Do live trading with us and secure your future</div>
+                        <div class="build-buttons">
+                            <div class="bannerbuttons">
+                            <a href="@controllers.routes.Registration.startSignUp().absoluteURL(true)">create account</a>
+                            <a href="@routes.Application.homePage().url">view exchange</a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script id="pair-scroll-template" type="text/x-handlebars-template">
+    	<ul id="marquee-horizontal">
+    	{{#each this}}
+	        <li>
+	            <div class="currency_name">{{base}}/{{counter}}<span style="color:{{color}}">{{percentage}} %</span></div>
+	            <label>{{last}} {{counter}}</label>
+	            <div class="scroll_volume">
+	                Volume: <span>{{sum}} {{base}}</span>
+	            </div>
+	        </li>
+	    {{/each}}
+	    </ul>
+    </script>
+}
+@content.footer()

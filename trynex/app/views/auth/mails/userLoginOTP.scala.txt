@@ -1,0 +1,64 @@
+
+ @(first_name:String,email: String, otp: String)(implicit messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>OTP</title>
+<style>
+    *{ margin:0px; padding:0px; box-sizing:border-box;}
+       body{ margin:0px; padding:0px; box-sizing:border-box;
+
+       }
+
+</style>
+</head>
+
+<body>
+    <div class="activateaccount wrapper">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr style="background:#009efd;">
+                    <th style="padding:6px 0px;"></th>
+                </tr>
+            </thead>
+            <tbody style="padding:30px 20px; display:block; width:100%; box-sizing:border-box; border-left: 1px solid #009efd; border-right: 1px solid #2af598;">
+                <tr>
+                    <td style="color:#000; font-size:14px; font-family:Arial, Helvetica, sans-serif;"><strong style="color:#000; font-size:14px; font-family:Arial, Helvetica, sans-serif;">Subject:</strong> Login one time OTP</td>
+                    
+                    
+                </tr>
+                <tr>
+                 
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Dear <span  style="color:#000;">@first_name</span></td>
+                </tr>
+                <tr>
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Thank you for using Trynex.</td>
+                </tr>
+                <tr>
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Your OTP for login at Trynex is <span style="color:#009efd;">@otp</span>.</td>
+                </tr>
+                <tr>
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">This OTP will be valid for 5 minutes. NEVER SHARE IT WITH ANYONE.</td>
+                </tr>
+                <tr>
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">If this login is suspicious, please report to<a href="mailto:@Messages("support@trynex.io.",play.api.Play.current.configuration.getString("email.security").get)">@Messages("support@trynex.io.",play.api.Play.current.configuration.getString("email.security").get)</a></td>
+                </tr>
+                <tr>
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Happy Trading!</td>
+                </tr>
+                <tr>
+                    <td style="color:#888; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding-top:15px;">Thanks!, <br><span>Team Trynex</span></td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr style="background:#009efd;">
+                    <td style="color:#000; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding:15px;"><strong style="color:#fff; font-weight:bold;">Disclaimer:</strong> The information in this email is confidential and Trynex owns all proprietary rights over its contents.</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+

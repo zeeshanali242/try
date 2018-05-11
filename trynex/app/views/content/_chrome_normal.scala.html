@@ -1,0 +1,67 @@
+@(title: String, scripts: Html = Html(""), styles: Html = Html(""), loggedIn: Boolean = false)(content: Html)(implicit request: RequestHeader, messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import play.api.Play.current
+
+@navItem(url: String, title:String) = {
+@if(request.path==url) {
+    <li class="active">
+    } else {
+    <li>
+    }
+    <a href="@url" title="@title">
+        <span class="sidebar-text">
+            @title
+        </span>
+    </a>
+</li>
+}
+
+@extraScripts = {
+
+
+
+}
+
+@extraStyles = {
+  <link rel="stylesheet" href="@routes.Assets.at("css/sms.css")" />
+}
+
+@_global_chrome(title, Html(scripts + extraScripts.body), Html(styles + extraStyles.body)) {
+
+     <header class="main-header">
+       <a href="#/" class="mobileButton">
+       <i class="fa fa-bars" aria-hidden="true"></i>
+     </a><!--Mobile Menu Icon-->
+    <a href="@routes.Application.index()" class="logo">
+        <img src="@routes.Assets.at("img/logo.png")" alt="Trynex"  />
+    </a>
+                <nav class="navbar navbar-static-top">
+
+
+                 <div class="currencybutton">
+
+      </div>
+
+
+      <script id="pair-picker-template" type="text/x-handlebars-template">
+
+
+      <a href="#/" id="currencyId" exchange-base="BTC" exchange-counter="INR"><img src="@routes.Assets.at("img/zee_currency_icon.png")" /><span id="t1">BTC/INR</span>  <img class="drop_arrow" src="@routes.Assets.at("img/drop_arrow.png")" /></a>
+        <ul class="currencydrop">
+            {{#each this}}
+                <li {{#if @@index}}{{else}}  {{/if}} ><a href="#" exchange-base="{{base}}" exchange-counter="{{counter}}" >{{base}}/{{counter}}</a></li>
+            {{/each}}
+            </ul>
+    </script>
+
+
+      </nav>
+
+
+
+            </div>
+        </div>
+  </header>
+
+    @content
+}

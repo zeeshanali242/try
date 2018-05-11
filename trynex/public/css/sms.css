@@ -1,0 +1,12 @@
+
+  	.otp_popup.signupoverlay{ display:block;}
+.otp_popup.signuppopup{ display:block; width: 400px; height: 260px;}
+.otp_popup .avtartname{ text-transform:capitalize; font-weight:normal;}
+.otp_popup span{ font-weight:normal; font-size:14px !important; letter-spacing:0.5px; text-transform:none;}
+.otp_popup form{ width:300px; margin:30px auto 0; text-align:center;}
+.otp_popup form ul{ padding:0px; margin:0px; overflow:hidden;}
+.otp_popup form ul li{width:100%; height:auto; list-style:none; margin-bottom:20px;}
+.otp_popup form ul li:last-child{ margin-bottom:0px;}
+.otp_popup form ul li input{ width:100%; border:1px solid #00ccff;}
+.otp_popup form ul li input{ font-size:14px; text-align:left; padding:0px 10px; line-height:40px; color:#000; border-radius:100px;}
+.otp_popup form ul li input[type="submit"]{ width:130px !important; background-image: linear-gradient(343deg, #009efd, #25eca2) !important; color:#fff !important; font-size:16px !important; text-transform:capitalize; text-align:center; border:0px !important;}

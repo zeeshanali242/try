@@ -1,0 +1,158 @@
+@(option:Option[securesocial.core.SocialUser])(implicit request: RequestHeader, messages: Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import helper._
+@import securesocial.core.UsernamePasswordProvider
+@import play.api.Play.current
+@import securesocial.core.SocialUser
+@implicitFieldConstructor = @{ FieldConstructor(auth.inputFieldConstructor.f(_)(messages)) }
+
+@scripts = {
+    <script src="@routes.Assets.at("js/vendor/jquery-2.1.1.js")"></script>
+    <script src="@routes.Assets.at("js/vendor/handlebars-v2.0.0.js")"></script>
+    <script src="@routes.Assets.at("js/content_index.js")"></script>
+     <script src="@routes.Assets.at("js/vendor/flotr2.min.js")"></script>
+   <!--  <script src="@routes.Assets.at("js/indexExchange.js")"></script> -->
+    <script src="@routes.Assets.at("js/home.js")"></script>
+    <script src="@routes.Assets.at("js/news.js")"></script>
+}
+
+@styles = {
+   <link rel="stylesheet" href="@routes.Assets.at("css/fontawesome_all.css")" />
+   <link rel="stylesheet" href="@routes.Assets.at("css/AdminLTE.css")"/>
+        <link rel="stylesheet" href="@routes.Assets.at("css/AdminLTE.min.css")"/>
+}
+
+@content._chrome("", styles, scripts, option=option) {
+
+    <div class="content-wrapper front_page" id="table1" style="min-height: 350px !important;">
+    <div class="row">
+        <section class="col-lg-8 connectedSortable">
+          <div class="box box-primary">
+            <h2 class="heading">@Messages("exchange.account.api_reference.order_book")</h2>
+            <div class="tablepart ordertable">
+                <div class="buy_order ord_ers">
+                    <h6>@Messages("exchange.openbids.title")</h6>
+                    <div class="table_details" id="open-bids" >
+                    </div>
+                </div>
+
+
+                <div class="buy_order ord_ers">
+                    <h6>@Messages("exchange.openasks.title")</h6>
+                    <div class="table_details" id="open-asks">
+                    </div>
+                </div>
+
+
+                <div class="buy_order ord_ers">
+                    <h6>@Messages("exchange.account.api_reference.trade_history")</h6>
+                    <div class="table_details" id="recent-trades">
+                    </div>
+                </div>
+              </div>
+          </div>
+        </section>
+        <div class="col-lg-4">
+          <div class="box box-primary">
+              <div class="sidebar_sighnup">
+                  <h5>India’s Next-Generation cryptocurrency trading platform</h5>
+                  <form id="formId" action="@controllers.routes.LoginPage.login().absoluteURL(true)">
+                  </form>
+                  <div id="loading-div-background">
+  <div id="loading-div" class="ui-corner-all">
+    <img style="height:32px;width:32px;margin:30px;" src="@routes.Assets.at("img/pleasewait.gif")" alt="Loading.."/><br>PROCESSING. PLEASE WAIT...
+  </div>
+</div>
+                    <ul class="login-signup-buttons">
+                      <li><a href="#" id="loginId" >log-in</a></li>
+                        <li><a href="#/">sign-up</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="announcments">
+              
+                
+            </div>
+        </div>
+</div>
+
+      </div>
+
+
+
+
+
+
+
+    <script id="open-bids-template" type="text/x-handlebars-template">
+     <div class="tablescroller">
+            <table  width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                    <tr>
+                        <td align="center" class="volume" style="padding: 0px !important">@{Messages("terminology.volume")}</td>
+                        <td align="center" class="price" style="padding: 0px !important">@Messages("terminology.price")/{{base}}</td>
+                    </tr>
+                    {{#each orders}}
+                    <tr >
+                        <td class="money" align="center">{{amount}}</td>
+                        <td class="money" align="center">{{price}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </script>
+
+    <script id="open-asks-template" type="text/x-handlebars-template">
+    <div class="tablescroller">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        
+                    <tr>
+                         <td align="center" class="volume" style="padding: 0px !important">@{Messages("terminology.volume")}</td>
+                         <td align="center" class="price" style="padding: 0px !important">@Messages("terminology.price")/{{base}} </td>
+                    </tr>
+                    {{#each orders}}
+                    <tr>
+                        <td class="money" align="center">{{amount}}</td>
+                        <td class="money" align="center">{{price}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </script>
+
+    <script id="recent-trades-template" type="text/x-handlebars-template">
+        <div class="tablescroller">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td align="center" class="volume" style="padding: 0px !important">@{Messages("terminology.volume")}</td>
+                        <td align="center" class="price" style="padding: 0px !important">@Messages("terminology.price")/{{base}}</td>
+                    </tr>
+                    {{#each orders}}
+                    <tr class="{{klass}}">
+                        <td class="money" align="center">{{amount}}</td>
+                        <td class="money" align="center">{{price}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </script>
+     <script id="news-template" type="text/x-handlebars-template">
+     <h5>Trending News</h5>
+        <ul>
+        {{#each this}}
+            <li>
+                <div class="announc_image"><img src="@routes.Assets.at("img/userimage.png")" /></div>
+                  <div class="annouement_title">
+                    <h6>{{title}}</h6>
+                      <div class="small_detail">
+                        <p>{{slug}}</p>
+                          <div class="date_time">{{created_at}}> <a href="{{url}}" target="_blank">Read More...</a></div>
+                      </div>
+                  </div>
+              </li>
+              {{/each}}
+          </ul>
+
+  </script>
+}
+@content.footer()

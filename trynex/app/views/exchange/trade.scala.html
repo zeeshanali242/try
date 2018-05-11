@@ -1,0 +1,244 @@
+@(user: securesocial.core.SocialUser)(implicit request: RequestHeader, messages: Messages)
+
+@scripts = {
+    <script src="@routes.Assets.at("js/vendor/flotr2.min.js")"></script>
+    <script src="@routes.Assets.at("js/exchange.js")"></script>
+    <script src="@routes.Assets.at("js/ExchangeTfa.js")"></script>
+
+}
+
+@exchange._chrome(user,Messages("chrome.exchange.navigation.exchange.title"), "random", scripts) {
+    <div class="row">
+    <section class="col-lg-8 connectedSortable">
+        <div class="box box-primary orderbook">
+            <h2 class="heading">@Messages("exchange.account.api_reference.order_book")</h2>
+            <div class="tablepart ordertable">
+                <div class="buy_order ord_ers">
+                    <h6>@Messages("exchange.openbids.title")</h6>
+                    <div class="table_details" id="open-bids">
+                    </div>
+                </div>
+
+
+                <div class="buy_order ord_ers">
+                    <h6>@Messages("exchange.openasks.title")</h6>
+                    <div class="table_details" id="open-asks">
+                    </div>
+                </div>
+
+
+                <div class="buy_order ord_ers">
+                    <h6>@Messages("exchange.account.api_reference.trade_history")</h6>
+                    <div class="table_details" id="recent-trades">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="col-lg-4">
+        <div class="box box-primary" id="tradingRow">
+                <div class="trade_part">
+                    <h5>trade</h5>
+                    @if(user.kyc=="verified") {
+                    <div class="buttons_form">
+                        <ul class="buy_sell">
+                            <li><button class="buy">buy <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></button></li>
+                            <li><button class="sell">sell <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></button></li>
+                        </ul>
+                        <div class="buyform active" id="bid">
+                        </div>
+                        <div class="sellform" id="ask">
+                        </div>
+                       <!--  <div class="last_trade_price">
+                            <img src="images/trade_price.png" />
+                            <h6>Last Trade Price : <span>{{last}}</span></h6>
+                        </div> -->
+                    </div>
+                  }
+                  @if(user.kyc=="notApplied"){
+                    <h5>Please complete your kyc to activate trading</h5>
+                     <a id="user-info" href="@controllers.routes.Application.getSignzyRedirectUrl().absoluteURL()">Please complete your KYC</a>
+                  }
+                  @if(user.kyc=="pending"){
+                    <h5>Your KYC status is Pending</h5>
+                  }
+                  @if(user.kyc=="rejected"){
+                    <h5>your KYC status is Rejected</h5>
+                     <a id="user-info" href="@controllers.routes.Application.getSignzyRedirectUrl().absoluteURL()">Please verify your KYC</a>
+                  }
+                </div>
+
+            </div>
+            <div class="open_order" id="pending-trades">
+
+
+            </div>
+          </div>
+
+</div>
+<div class="">
+    <div class="dropdown switch_chart_graph">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Switch Chart
+    <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="test">
+            <li><a id="liveChart">Live Price</a></li>
+            <li><a id="candleChart">Candle</a></li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="graph">
+        </div>
+    </div>
+</div>
+<div class="row" id="tfa_enable">
+    <div class="col-md-6">
+        <p id="acct-info"></p>
+    </div>
+    <div class="modal fade" id="tfa-enable-modal" tabindex="-1" role="dialog" aria-labelledby="tfa-enable-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+</div>
+    <script id="bid-template" type="text/x-handlebars-template">
+        <form role="form">
+             <ul>
+                <li>
+                    <label>{{counter}} @{Messages("terminology.balance")} {{balance}}</label>
+                    <input type="text" class="amount" name="currency_volume" placeholder="{{base}} Volume" required="required" />
+                </li>
+                <li>
+                    <label>lowest bid: {{price}}</label>
+                    <input type="text" class="price" name="price_per_eth" placeholder="Price Per {{counter}}" value="{{price}}" required="required"/>
+                </li>
+                <li>
+                    <label>Total @{Messages("terminology.amount")}</label>
+                    <input type="text" class="counter" name="total_amount" placeholder="Amount" required="required" />
+                    <span class="inclusive_tax">Amount inclusive of fees *</span>
+                </li>
+                <li class="submitbutton">
+                    <input type="submit" name="buy_button" id="bid-submit" value="@{Messages("terminology.bid")} {{base}}">
+                </li>
+            </ul>
+         </form>
+    </script>
+
+    <script id="ask-template" type="text/x-handlebars-template">
+        <form role="form">
+            <ul>
+                <li>
+                    <label>{{base}} @{Messages("terminology.balance")} {{balance}}</label>
+                    <input type="text" name="currency_volume"  class="amount" placeholder="{{base}} Volume" />
+                </li>
+                <li>
+                    <label>highest ask: {{price}}</label>
+                    <input type="text" class="price" name="price_per_eth" placeholder="Price Per {{counter}}" value="{{price}}"/>
+                </li>
+                <li>
+                    <label>Total @{Messages("terminology.amount")}</label>
+                    <input type="text"  class="counter" name="total_amount" placeholder="Amount" />
+                    <span class="inclusive_tax">Amount inclusive of fees *</span>
+                </li>
+                <li class="submitbutton">
+                    <input type="submit" id="ask-submit" name="buy_button" value="@{Messages("terminology.ask")} {{base}}">
+                </li>
+            </ul>
+        </form>
+    </script>
+    <script id="open-bids-template" type="text/x-handlebars-template">
+
+        <div class="tablescroller">
+            <table  width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td align="center" class="volume" style="padding: 0px !important">@{Messages("terminology.volume")}</td>
+                        <td align="center" class="price" style="padding: 0px !important">@Messages("terminology.price")/{{base}}</td>
+                    </tr>
+                    {{#each orders}}
+                    <tr >
+                        <td class="money" align="center">{{amount}}</td>
+                        <td class="money" align="center">{{price}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </script>
+
+    <script id="open-asks-template" type="text/x-handlebars-template">
+        <div class="tablescroller">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                    <tr>
+                         <td align="center" class="volume" style="padding: 0px !important">@{Messages("terminology.volume")}</td>
+                         <td align="center" class="price" style="padding: 0px !important">@Messages("terminology.price")/{{base}} </td>
+                    </tr>
+                    {{#each orders}}
+                    <tr >
+                        <td class="money" align="center">{{amount}}</td>
+                        <td class="money" align="center">{{price}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </script>
+
+    <script id="recent-trades-template" type="text/x-handlebars-template">
+        <div class="tablescroller">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                    <tr>
+                        <td align="center" class="volume" style="padding: 0px !important">@{Messages("terminology.volume")}</td>
+                        <td align="center" class="price" style="padding: 0px !important">@Messages("terminology.price")/{{base}}</td>
+                    </tr>
+                    {{#each orders}}
+                    <tr class="{{klass}}">
+                        <td class="money" align="center">{{amount}}</td>
+                        <td class="money" align="center">{{price}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </script>
+    <script id="pending-trades-template" type="text/x-handlebars-template">
+        <h5>your open orders</h5>
+         @if(user.kyc=="verified") {
+           <ul>
+             {{#each .}}
+                    <li>
+                        <div class="date_price">
+                            <div class="dp date">
+                                date
+                                <span>{{created}}</span>
+                            </div>
+                            <div class="dp pricing">
+                                price per {{base}}
+                                <span>{{price}}</span>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="type_volume">
+                            <div class="type tv">
+                                type
+                                <span>{{order_type}}</span>
+                            </div>
+                            <div class="vol_ tv">
+                                volume
+                                <span>{{amount}}</span>
+                            </div>
+                            <div class="cancel tv">
+                                <a href="javascript:void(0)"  exchange-trade-id="{{id}}">@Messages("terminology.cancel")</a>
+                            </div>
+                        </div>
+                    </li>
+                {{/each}}
+
+            </ul>
+            }
+    </script>
+}
+@content.session_footer()

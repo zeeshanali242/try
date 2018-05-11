@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+*   { margin:0px; padding:0px; box-sizing:border-box;}
+body{ margin:0px; padding:0px; box-sizing:border-box; background:#fafbfc;}
+
+a:focus{ outline:none;}
+a:input{ outline:none;}
+a:select{ outline:none;}
+a:textarea{ outline:none;}
+a:hover{ text-decoration:none;}
+
+h1, h2, h3, h4, h5, h6{ margin:0px;}
+
+ul li{ list-style:none;}
+
+
+
+/*=======Main Screen========*/
+
+.mainpagescreen{ width:100%; position:fixed; top:0; bottom:0; height:100%; background:url(../images/mainpage.jpg) no-repeat center top / 100% 100%; }
+.Mask {  width: 100%;  height: 70px;  object-fit: contain;  border-radius: 0 0 4px 4px;  background-image: linear-gradient(to right, #009efd, #2af598); }
+.Mask {  padding-top: 5px; padding-bottom: 5px; position:relative; z-index:9999; overflow:visible;}
+
+
+/*=======Login Page========*/
+
+.login img{width: 70%; margin:0 auto; }
+.loginfields{ position:absolute; left:0; right:0; top:0; bottom:0; margin:auto; width:385.5px; height:450px; text-align:center;}
+.Login {font-family: Lato;  font-size: 30px;  font-weight: bold;  font-style: normal;  font-stretch: normal;  line-height: normal;  letter-spacing: 0.2px;  }
+.Login {text-align: center;  color: #1a173b;}
+
+.bDesign_Login-page {  width: 100%;  height: 550px; position:relative;  background-color: #fafbfc;}
+.person {  width: 35px;  height:auto; margin-top: -10px; margin-right:10px; margin-left: -10px;}
+
+.logintagline{ font-size:17px; text-align:center; line-height:30px; letter-spacing:0.1px; color:#8a96a0;font-family: 'latoregular'; margin:10px 0px 30px;}
+
+.rectangle {  width: 385.5px;  height: 54px; padding:0px 15px;  border-radius: 4.5px;  background-color: #ffffff;  border: solid 1px #d0d9de; }
+.hide-label { display: none; }
+.gigliopierluigigmai {   font-family: Lato;  font-size: 14px;  font-weight: bold;  font-style: normal;  font-stretch: normal;  line-height: 1.61;   }
+.gigliopierluigigmai {   letter-spacing: normal;  text-align: left;  color: #1b2437;}
+.pass {  width: 385.5px;  height: 54px;  border-radius: 4.5px;  background-color: #ffffff; border-style: solid;  border-width: 1.8px;  }
+.pass {  border-image-source: linear-gradient(98deg, #009efd, #25eaa4);  border-image-slice: 1; }
+
+.startform{ width:100%; overflow:hidden; height:auto; padding-top:13px;}
+.startform ul li{ margin-bottom:20px; position:relative;}
+
+.passfield{ position:relative;}
+.passfield span{ position:absolute; top:-10px; left:15px; width: 82px; height: 21px; border-radius: 3px; background-color: #38b5ed; font-size: 12px; font-weight: bold;}
+.passfield span{ text-transform:uppercase; font-style: normal; line-height: 1.88;text-align: center; color: #ffffff;}
+.passfield label{display: none;}
+
+.loginbutton{ width:100; overflow:hidden; height:auto;}
+.loginbutton label{ font-size:14px; color:#8a96a0; text-align:left; line-height:35px; letter-spacing:0.1px; float:left; font-weight:normal;}
+.loginbutton label a{ font-weight:bold; letter-spacing:0px; text-transform:capitalize;}
+.loginbutton  input[type="submit"]{  width: 113.9px;  height: 35.7px;  border-radius: 22.9px;  background-image: linear-gradient(107deg, #009efd, #25eba3); float:right; border:0px;}
+.loginbutton  input[type="submit"]{  font-size: 14.4px; color:#fff;font-weight: bold;   letter-spacing: 0.1px; text-align: center;}
+
+.userinfo {    margin-top: 5px;}
+.userinfo a{ display:block; overflow:hidden;}
+.user_avtar{ border-radius:100%; float:left; margin-right:15px; position:relative;}
+.Avatar {  width: 50px;  height: 50px; border-radius:100%; }
+.user_avtar .online {    position: absolute;    bottom: -2px;    right: -5px;    background: #21e4ab;    width: 20px;    height: 20px;    border-radius: 100%;}
+.user_avtar .online i {    border: 3px solid #fff;    border-radius: 100%;    color: #21e4ab;    font-size: 9px;    position: relative;    top: -2px;    left: -4px;}
+
+.username_designation{ text-align:left; float:left; position:relative;}
+.username_designation h5{   font-family: 'Proxima Nova Rg';  font-size: 18px; font-weight:normal;   font-style: normal;  font-stretch: normal;  }
+.username_designation h5{  line-height: 27px;  letter-spacing: normal;  text-align: left;  color: #ffffff;}
+.username_designation .position{   font-family: 'Proxima Nova Rg';  font-size: 16px; font-weight:normal;   font-style: normal;  font-stretch: normal;  }
+.username_designation .position{  line-height: normal;  letter-spacing: normal;  text-align: left;  color: #ffffff;}
+.username_designation i {    position: absolute;    right: -30px;    top: 10px;    font-size: 25px;    color: #fff;}
+
+
+/*=======Dashboard Page========*/
+
+.dashboard {  width: 276px; min-height: 100%;  height: 100%; position:absolute; left:0px; top:0px;  border-radius: 4px;  background-color: #203663;  }
+.dashboard {  border: solid 1px #ebedf8; padding-top: 100px;}
+.dashboardmenu{ width:100%; overflow:hidden;}
+.dashboardmenu ul li{ width:100%; overflow:hidden; margin:10px 0px;}
+.dashboardmenu ul li.active a{ background:rgba(255, 255, 255, 0.49); border-left:3px solid #fff;}
+.dashboardmenu ul li.active a label i{ opacity:1;}
+.dashboardmenu ul li.active a span{ opacity:1;}
+.dashboardmenu ul li a:hover span{ opacity:1;}
+.dashboardmenu ul li a:hover label i{ opacity:1;}
+.dashboardmenu ul li a:hover{background:rgba(255, 255, 255, 0.49);}
+.dashboardmenu ul li a{ display:block; padding:10px 0px; overflow:hidden;}
+.dashboardmenu ul li label{ display:block; float:left; width:80px; text-align:center; margin:3px 0 0 0;}
+.dashboardmenu ul li label i{ color:#fff; opacity: 0.4; font-size:25px;}
+.dashboardmenu ul li span{ display:block; float:left;  opacity: 0.4;  font-family: 'Proxima Nova Rg';  font-size: 18px; font-weight: bold;  font-style: normal;  }
+.dashboardmenu ul li span{ font-stretch: normal;  line-height: 1.9;  letter-spacing: normal;  text-align: left;  color: #ffffff; text-transform:uppercase; letter-spacing:0.3px;}
+
+
+
+
+/*=======Signup Popup========*/
+
+.signupoverlay.active{ display:block;}
+.signuppopup.active{ display:block;}
+
+.signupoverlay {opacity: 0.5; cursor:zoom-out;  background-color: #000000; position:fixed; top:0; left:0; width:100%; height:100%; z-index:99999; display:none;}
+.signuppopup{ width:686px; height:429px; border-radius: 5.1px; box-shadow: 0 5px 7px 0 rgba(144, 164, 183, 0.22);   background-color: #ffffff; z-index:999999; display:none;}
+.signuppopup{ position:fixed; left:0; top:0; bottom:0; right:0; margin:auto; padding:35px;}
+.avtarbig{ width:110px; height:auto; margin:0 auto; border-radius:100%; border:1px solid #f5f5f5; margin-bottom:30px;}
+.avtarbig img{ width:100%; height:auto; border-radius:100%;}
+.avtartname{font-family: Lato;  font-size: 18px;  font-weight: bold;  font-style: normal; text-transform:uppercase;  font-stretch: normal;  line-height: normal;  }
+.avtartname{letter-spacing: 0.1px;  text-align: center;  color: #1a173b;}
+.signuppopup span{font-family: Lato;  font-size: 18px;  font-weight: bold;  font-style: normal; text-transform:uppercase;  font-stretch: normal;  line-height: normal;  }
+.signuppopup span{letter-spacing: 0.1px;  text-align: center;  color: #1a173b; display:block; margin:15px 0px;}
+
+.verified{ font-family: Lato;  font-size: 16px;  font-weight: normal;  font-style: normal;  font-stretch: normal;  line-height: 1.65;}
+.verified{    letter-spacing: 0.1px;  text-align: center;  color: #8a96a0; text-transform:uppercase;}
+
+.sign_buttons{ position:absolute; bottom:25px; text-align:center; width:100%; left:0px;}
+.sign_buttons ul li{ display:inline-block; margin:5px;}
+.sign_buttons ul li a { display:block;  width: 112px;  height: 36px;  border-radius: 22.9px;  border: solid 1.5px #bababa;   font-size: 14px;   }
+.sign_buttons ul li a { text-transform:uppercase; font-weight:700;  font-style: normal;  font-stretch: normal;}
+.sign_buttons ul li a { line-height: normal;  letter-spacing: 0.1px; line-height:34px;  text-align: center;  color: #aaaaaa;}
+.sign_buttons ul li.ok a{background-image: linear-gradient(107deg, #009efd, #25eca2); color:#fff; border:1px solid transparent;}
+.sign_buttons ul li a:hover{ text-decoration:none;}
+
+.signuppage{ padding-top:2%;}
+.signup_container{  width: 385.5px; margin:0 auto;}
+.signup_container .person_title{ text-align:center;}
+
+/*.c_block { width: 13.4%; height: 155px;  border-radius: 6px;  background-color: #ffffff;  border: solid 1.5px #d0d9de; display:table; position:relative; }
+.c_block { float:left; margin-right:12px;}
+.c_block:last-child{ margin-right:0px;}
+.c_block .check{ position:absolute;   width: 34.5px;  height: 34.5px;  background-image: linear-gradient(to bottom, #b4ec51, #429321); box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);}
+.c_block .check {    color: #fff;    border-radius: 100%;    padding-top: 10px;    top: -10px;    left: -10px;}
+.c_block a{ display:table-cell; vertical-align:middle; width:100%; text-align:center;}
+.c_block a:hover .currency_name i{color:#00caff;}
+.c_block .currency_name i{  font-family: FontAwesome;  font-size: 56px; line-height: 54px; margin-top:-16px; font-weight: normal;  font-style: normal;  font-stretch: normal;  }
+.c_block .currency_name i{  line-height: normal;  letter-spacing: normal;  text-align: left;  color: #d0d9de;}
+.c_block.active .currency_name i{ color:#00caff;}*/
+
+.currency_name span {  width: 48.4px;  height: 19.5px;  font-family: Lato;  font-size: 20px;  font-weight: bold;  font-style: normal;  font-stretch: normal;  line-height: 1.13;  }
+.currency_name span{  letter-spacing: normal;  text-align: center;  color: #1b2437; display:block; text-align:center; text-transform:uppercase; width:100%; margin-top:15px;}
+
+.curreny_blocks{ margin:10px 0px 60px;}
+.createyouraccount {    width: 100%;   height: auto;    font-family: Lato;    font-size: 14px;    font-weight: normal;    font-style: normal;   font-stretch: normal;    line-height: 2.14;    letter-spacing: 0.1px;    text-align: center;    color: #8a96a0;    overflow: hidden;    margin-bottom: 30px;}
+
+
+.page_is_sigup .dashboard{ width:80px;}
+.page_is_sigup .dashboard .dashboardmenu ul li span{ display:none;}
+.page_is_sigup .content_panel{ margin-left:80px;}
+
+
+/*=======Content Panel========*/
+
+.mainpage{ width:100%; overflow:hidden;}
+.content_panel{ width:auto; margin-left:276px; margin-top:70px; padding: 30px;}

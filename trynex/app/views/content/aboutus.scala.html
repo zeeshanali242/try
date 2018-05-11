@@ -1,0 +1,76 @@
+@(option:Option[securesocial.core.SocialUser])(implicit request:RequestHeader,message:Messages)
+@import securesocial.core.UsernamePasswordProvider
+@import securesocial.core.UsernamePasswordProvider
+@import helper._
+
+@scripts = {
+    <script src="@routes.Assets.at("js/common_header.js")"></script>
+}
+
+
+ @content._chrome("About Us",scripts=scripts,option=option) {
+  <div class="content-wrapper">
+    <div class="row">
+        <section class="col-lg-12 connectedSortable support_ticket_page">
+          	<div class="how_it_works">
+            	<h6>ABOUT TRYNEX</h6>
+                <div class="color_stip" style="background:#85a8fc;"></div>
+                <div class="page_content">
+                    <div class="col-lg-12">
+                        <div class="support_content">
+                            <h4>Trynex is India's most advanced digital exchange</h4>
+                            <p>It's the first complete exchange supporting multiple cryptocurrencies/ tokens on a single platform. Built entirely from scratch, Trynex is aimed at bringing the magic of blockchain technology to India. Bitcoin - the world's first cryptocurrency - was introduced in 2009 and since then over 1000 tradable tokens have come into existence. However, for a long time India missed out on the tremendous opportunity that the rest of the world had been enjoying and Trynex has been built to to bridge that gap.</p>
+                            <p>Trynex has been built over cutting edge technology. Proprietary trading engine, wallet and platform architectures, grade A security, user-centric UI/UX, and tons of user-demanded features are some of the things which define Trynex. It's being carved to perfection, one day at a time, all with your constant love and support.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="col-lg-12 connectedSortable aboutuspage">
+          	<div class="how_it_works">
+            	<h6>meet the team at trynex</h6>
+                <div class="color_stip" style="background:#e385fc;"></div>
+                <div class="page_content">
+                    <div class="col-lg-12">
+                        <div class="col-lg-8">
+                        	<div class="support_content">
+                            <h4>The team behind Trynex are people <br>just like you.</h4>
+                            <p>We are a bunch of technologists and product designers who share the same love and passion for blockchain technology and cryptocurrencies as you. We have been traders ourselves, and we are working to solve the pain known to all of us, one step at a time. </p>
+                            <p>It is our vision to make India a hotbed of blockchain technology development and adoption. We assure you that the coming future is going to be delightful and full of surprises.</p>
+                            <p>As we strive to improve Trynex, build more trading tools, develop more blockchain products, and create a holistic cryptocurrency trading ecosystem.</p>
+                        </div>
+                        </div>
+                        <div class="col-lg-4">
+                        	<div class="team_list">
+                            	<div class="team_image"><img src="@routes.Assets.at("img/team/anuj.jpg")" alt="Team" title="Anuj Yadav" /></div>
+                                <div class="team_name">
+                                	<h4>Anuj Yadav</h4>
+                                    <h6>Co-Founder & CTO</h6>
+                                </div>
+                            </div>
+                            <div class="team_list">
+                            	<div class="team_image"><img src="@routes.Assets.at("img/team/anuj.jpg")" alt="Team" title="Anuj Yadav" /></div>
+                                <div class="team_name">
+                                	<h4>Sachin Singh</h4>
+                                    <h6>Founder & CEO</h6>
+                                </div>
+                            </div>
+                            <div class="team_list">
+                            	<div class="team_image"><img src="@routes.Assets.at("img/team/anuj.jpg")" alt="Team" title="Anuj Yadav" /></div>
+                                <div class="team_name">
+                                	<h4>Charles Bell</h4>
+                                    <h6>Co-Founder & CPO</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+
+  </div>
+   }
+@content.session_footer()
